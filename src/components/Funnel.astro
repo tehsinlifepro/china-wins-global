@@ -1,12 +1,16 @@
 ---
 import { SITE } from '../config';
 import type { FunnelContent } from '../data/verticals';
+import LeadMagnet from './LeadMagnet.astro';
+import type { MagnetCopy } from '../data/leadMagnets';
 
 interface Props {
   content: FunnelContent;
   lang: 'en' | 'zh';
+  magnet?: MagnetCopy;
+  magnetFile?: string;
 }
-const { content, lang } = Astro.props;
+const { content, lang, magnet, magnetFile } = Astro.props;
 
 const S = {
   en: {
@@ -148,6 +152,15 @@ const p = lang === 'zh' ? '/zh' : '';
     </div>
   </div>
 </section>
+
+{magnet && magnetFile && (
+  <section class="chapter chapter--light" id="freebie">
+    <div class="wrap wrap--narrow">
+      <p class="eyebrow"><i></i><span>{lang === 'zh' ? '免费资源' : 'Free resource · 免费资源'}</span></p>
+      <LeadMagnet magnet={magnet} file={magnetFile} lang={lang} featured />
+    </div>
+  </section>
+)}
 
 <!-- PRICING -->
 <section class="chapter chapter--light" id="pricing">

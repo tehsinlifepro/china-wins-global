@@ -1,6 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import LeadMagnet from '../../components/LeadMagnet.astro';
+import { magnets } from '../../data/leadMagnets';
 
 const posts = (await getCollection('blog', ({ data }) => data.lang === 'en' && !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
@@ -11,13 +13,19 @@ const slug = (id: string) => id.replace(/^en\//, '');
 
 <BaseLayout
   title="Learn — China Wins Global"
-  description="Guides and courses on winning global B2B clients with LinkedIn — for China's suppliers, factories, forwarders, and software companies."
+  description="Guides, courses, and free downloads on winning global B2B clients with LinkedIn — for China's suppliers, factories, forwarders, and software companies."
 >
   <section class="chapter chapter--light">
     <div class="wrap">
       <p class="eyebrow"><i></i><span>Learn · 学院</span></p>
       <h1 class="h2">The China Wins Global Academy</h1>
       <p class="page-lead">Guides and courses on turning LinkedIn into a client pipeline. Written for suppliers selling to the West.</p>
+
+      <h2 class="h2" style="font-size:1.6rem;margin-top:3rem">Free downloads</h2>
+      <div class="learn-grid">
+        <LeadMagnet magnet={magnets['07'].en} file={magnets['07'].file} lang="en" />
+        <LeadMagnet magnet={magnets['09'].en} file={magnets['09'].file} lang="en" />
+      </div>
 
       <h2 class="h2" style="font-size:1.6rem;margin-top:3rem">Courses</h2>
       <div class="learn-grid">

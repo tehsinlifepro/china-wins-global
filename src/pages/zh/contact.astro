@@ -1,6 +1,9 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import AuditForm from '../../components/AuditForm.astro';
+import { SITE } from '../../config';
+
+const mailto = `mailto:${SITE.contact.email}?subject=%E5%85%8D%E8%B4%B9%E6%A0%87%E9%A2%98%E9%87%8D%E5%86%99&body=%E6%88%91%E7%9A%84%E9%A2%86%E8%8B%B1%E4%B8%BB%E9%A1%B5%E9%93%BE%E6%8E%A5%EF%BC%9A%20`;
 ---
 
 <BaseLayout
@@ -16,4 +19,31 @@ import AuditForm from '../../components/AuditForm.astro';
       <AuditForm lang="zh" />
     </div>
   </section>
+
+  <section class="chapter chapter--dark" id="rewrite">
+    <div class="wrap wrap--narrow">
+      <p class="eyebrow eyebrow--dark"><i></i><span>免费重写</span></p>
+      <h2 class="h2 h2--dark">免费：我们帮你把领英标题 + 前 3 行，重写成西方买家真正会搜索的词。</h2>
+      <p class="rewrite-lede">你的标题，是西方买家读到的第一样东西——通常也是他们不回复的原因。把你的领英主页链接发给我们，我们会回给你：</p>
+      <ul class="rewrite-list">
+        <li>一个基于买家真实搜索关键词、为你的品类量身重写的标题</li>
+        <li>重写后的「About」前 3 行，以买家的问题开头</li>
+        <li>一句话点出我们发现的最大缺口</li>
+      </ul>
+      <p class="rewrite-lede">无需通话。无需填表。免费。只要把你的主页链接发给我们。</p>
+      <div class="hero__ctas">
+        <a class="btn btn--primary" href={mailto}><span>把你的领英链接发给我们</span></a>
+        <span class="rewrite-alt">或微信：<strong>{SITE.contact.wechat}</strong></span>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .rewrite-lede { color: rgba(247, 243, 236, 0.72); line-height: 1.8; margin-top: 1rem; max-width: 44rem; }
+  .rewrite-list { margin: 1.25rem 0; display: flex; flex-direction: column; gap: 0.6rem; max-width: 44rem; }
+  .rewrite-list li { color: rgba(247, 243, 236, 0.72); line-height: 1.7; padding-left: 1.5rem; position: relative; }
+  .rewrite-list li::before { content: '✓'; position: absolute; left: 0; color: var(--red-soft); }
+  .rewrite-alt { color: rgba(247, 243, 236, 0.6); }
+  .rewrite-alt strong { color: var(--cream); }
+</style>

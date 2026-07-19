@@ -1,48 +1,35 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import AuditForm from '../components/AuditForm.astro';
+import LeadMagnet from '../components/LeadMagnet.astro';
+import { magnets } from '../data/leadMagnets';
 
-const resources = [
-  { title: 'The LinkedIn Profile Checklist for Suppliers', desc: 'The 12 things a Western buyer checks before they reply — and how to fix each one.' },
-  { title: 'Cold-Outreach Message Templates', desc: 'The opening messages that start conversations with importers and brands (without sounding like spam).' },
-  { title: 'The 72-Hour Trade-Show Follow-Up System', desc: 'Turn booth business cards into LinkedIn relationships before they go cold.' },
-];
+const grid = ['01', '02', '03', '04', '07', '09'];
 ---
 
 <BaseLayout
   title="Free Resources — China Wins Global"
-  description="Practical, no-fluff playbooks on building a LinkedIn presence that turns cold contacts into clients."
+  description="Free, branded playbooks and scorecards on building a LinkedIn presence that turns cold contacts into Western B2B clients."
 >
   <section class="chapter chapter--light">
     <div class="wrap">
       <p class="eyebrow"><i></i><span>Free resources · 免费资源</span></p>
       <h1 class="h2">Playbooks for winning Western buyers.</h1>
-      <p class="page-lead">Practical, no-fluff guides on building a LinkedIn presence that turns cold contacts into clients. New resources drop regularly — join the list to get them first.</p>
+      <p class="page-lead">Practical, no-fluff guides on turning LinkedIn into a client pipeline. Free branded PDFs — enter your email and we’ll send the download.</p>
 
-      <div class="res-grid">
-        {resources.map((r) => (
-          <div class="res-card">
-            <h3>{r.title}</h3>
-            <p>{r.desc}</p>
-            <span class="res-soon">Coming soon</span>
-          </div>
-        ))}
+      <div class="mag-featured">
+        <LeadMagnet magnet={magnets['05'].en} file={magnets['05'].file} lang="en" featured />
       </div>
 
-      <div style="margin-top:3rem">
-        <h2 class="h2" style="font-size:1.6rem">Get them first</h2>
-        <p class="page-lead">Drop your email — we’ll send new resources as they’re released, plus your free LinkedIn audit.</p>
-        <AuditForm lang="en" />
+      <div class="mag-grid">
+        {grid.map((id) => <LeadMagnet magnet={magnets[id].en} file={magnets[id].file} lang="en" />)}
       </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .res-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2.5rem; }
-  .res-card { padding: 1.5rem; border: 1px solid var(--hairline); border-radius: 1.25rem; background: var(--paper); }
-  .res-card h3 { font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 0.5rem; }
-  .res-card p { color: var(--muted); line-height: 1.6; }
-  .res-soon { display: inline-block; margin-top: 1rem; font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--red); border: 1px solid var(--red-soft); border-radius: 999px; padding: 0.25rem 0.7rem; }
-  @media (max-width: 760px) { .res-grid { grid-template-columns: 1fr; } }
+  .mag-featured { margin: 2.5rem 0 1.5rem; }
+  .mag-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  @media (max-width: 900px) { .mag-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .mag-grid { grid-template-columns: 1fr; } }
 </style>

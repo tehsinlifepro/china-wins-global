@@ -2,11 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Funnel from '../components/Funnel.astro';
 import { verticals } from '../data/verticals';
+import { magnets } from '../data/leadMagnets';
 ---
 
 <BaseLayout
   title="LinkedIn Demand Gen for Supply-Chain & E-commerce SaaS — China Wins Global"
   description="B2B buyers research tools on LinkedIn before booking a demo. We fill your demo calendar with qualified supply-chain and e-commerce buyers."
 >
-  <Funnel content={verticals.software.en} lang="en" />
+  <Funnel content={verticals.software.en} lang="en" magnet={magnets['03'].en} magnetFile={magnets['03'].file} />
 </BaseLayout>

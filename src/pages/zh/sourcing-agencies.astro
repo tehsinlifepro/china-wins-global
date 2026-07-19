@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import html from '../../funnels/sourcing-zh.html?raw';
+import LeadMagnet from '../../components/LeadMagnet.astro';
+import { magnets } from '../../data/leadMagnets';
 ---
 
 <BaseLayout
@@ -9,4 +11,10 @@ import html from '../../funnels/sourcing-zh.html?raw';
   description="展会线索 72 小时内变冷。我们在你的采购代理与西方亚马逊卖家之间，搭建领英信任层。90 天 30 次高质量对话 —— 保证达成。"
 >
   <Fragment set:html={html} />
+  <section class="chapter chapter--light" id="freebie">
+    <div class="wrap wrap--narrow">
+      <p class="eyebrow"><i></i><span>免费资源</span></p>
+      <LeadMagnet magnet={magnets['01'].zh} file={magnets['01'].file} lang="zh" featured />
+    </div>
+  </section>
 </BaseLayout>

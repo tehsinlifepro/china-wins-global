@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import html from '../funnels/sourcing-en.html?raw';
+import LeadMagnet from '../components/LeadMagnet.astro';
+import { magnets } from '../data/leadMagnets';
 ---
 
 <BaseLayout
@@ -8,4 +10,10 @@ import html from '../funnels/sourcing-en.html?raw';
   description="Your trade show leads go cold in 72 hours. We build the LinkedIn trust layer between your sourcing agency and Western Amazon sellers. 30 qualified conversations in 90 days — guaranteed."
 >
   <Fragment set:html={html} />
+  <section class="chapter chapter--light" id="freebie">
+    <div class="wrap wrap--narrow">
+      <p class="eyebrow"><i></i><span>Free resource · 免费资源</span></p>
+      <LeadMagnet magnet={magnets['01'].en} file={magnets['01'].file} lang="en" featured />
+    </div>
+  </section>
 </BaseLayout>

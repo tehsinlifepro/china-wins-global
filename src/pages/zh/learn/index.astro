@@ -1,6 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import LeadMagnet from '../../../components/LeadMagnet.astro';
+import { magnets } from '../../../data/leadMagnets';
 
 const posts = (await getCollection('blog', ({ data }) => data.lang === 'zh' && !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
@@ -12,13 +14,19 @@ const slug = (id: string) => id.replace(/^zh\//, '');
 <BaseLayout
   lang="zh"
   title="学院 —— 中国赢全球"
-  description="用领英赢得全球 B2B 客户的指南与课程——为中国的供应商、工厂、货代与软件企业而写。"
+  description="用领英赢得全球 B2B 客户的指南、课程与免费下载——为中国的供应商、工厂、货代与软件企业而写。"
 >
   <section class="chapter chapter--light">
     <div class="wrap">
       <p class="eyebrow"><i></i><span>学院</span></p>
       <h1 class="h2">中国赢全球 · 学院</h1>
       <p class="page-lead">把领英变成客户管道的指南与课程。专为面向西方市场的供应商而写。</p>
+
+      <h2 class="h2" style="font-size:1.6rem;margin-top:3rem">免费下载</h2>
+      <div class="learn-grid">
+        <LeadMagnet magnet={magnets['07'].zh} file={magnets['07'].file} lang="zh" />
+        <LeadMagnet magnet={magnets['09'].zh} file={magnets['09'].file} lang="zh" />
+      </div>
 
       <h2 class="h2" style="font-size:1.6rem;margin-top:3rem">课程</h2>
       <div class="learn-grid">

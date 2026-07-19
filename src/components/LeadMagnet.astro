@@ -1,0 +1,81 @@
+---
+import { SITE } from '../config';
+import { downloadPath, type MagnetCopy } from '../data/leadMagnets';
+
+interface Props {
+  magnet: MagnetCopy;
+  file: string;
+  lang: 'en' | 'zh';
+  featured?: boolean;
+}
+const { magnet, file, lang, featured = false } = Astro.props;
+const url = downloadPath(file, lang);
+
+const S = {
+  en: { badge: 'Free PDF', placeholder: 'you@company.com', cta: 'Send me the PDF', success: 'Done — your download is below (and on its way to your inbox).', invalid: 'Please enter a valid email address.', dl: 'Download the PDF' },
+  zh: { badge: '免费 PDF', placeholder: 'you@company.com', cta: '把 PDF 发给我', success: '完成——下方即可下载（同时已发送到你的邮箱）。', invalid: '请输入有效的邮箱地址。', dl: '下载 PDF' },
+}[lang];
+---
+
+<div class={`magnet ${featured ? 'magnet--featured' : ''}`}>
+  <span class="magnet__badge">{S.badge}</span>
+  <h3 class="magnet__title">{magnet.title}</h3>
+  <p class="magnet__blurb">{magnet.blurb}</p>
+
+  <form
+    class="capture magnet__form"
+    action={SITE.mailerlite.actionUrl}
+    method="post"
+    novalidate
+    data-download={url}
+    data-msg-success={S.success}
+    data-msg-invalid={S.invalid}
+  >
+    <div class="capture__row">
+      <input class="capture__input" type="email" name="fields[email]" placeholder={S.placeholder} autocomplete="email" aria-label="Email" aria-required="true" />
+      <button class="btn btn--primary capture__btn" type="submit"><span>{S.cta}</span></button>
+    </div>
+    <input type="hidden" name="ml-submit" value="1" />
+    <input type="hidden" name="anticsrf" value="true" />
+    <p class="capture__msg" role="alert" aria-live="polite"></p>
+  </form>
+
+  <div class="capture__done" hidden>
+    <p>{S.success}</p>
+    <a class="btn btn--primary" href={url} download><span>{S.dl}</span></a>
+  </div>
+</div>
+
+<style>
+  .magnet {
+    padding: 1.75rem;
+    border: 1px solid var(--hairline);
+    border-radius: 1.25rem;
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .magnet--featured {
+    background: linear-gradient(180deg, var(--paper), #fff);
+    border-color: var(--red-soft);
+    padding: 2.25rem;
+  }
+  .magnet__badge {
+    align-self: flex-start;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--red);
+    border: 1px solid var(--red-soft);
+    border-radius: 999px;
+    padding: 0.22rem 0.65rem;
+    margin-bottom: 1rem;
+  }
+  .magnet__title { font-family: var(--font-display); font-size: 1.35rem; line-height: 1.15; margin-bottom: 0.5rem; }
+  .magnet--featured .magnet__title { font-size: 1.9rem; }
+  .magnet__blurb { color: var(--muted); line-height: 1.6; margin-bottom: 1.25rem; flex: 1; }
+  .magnet__form { margin-top: auto; }
+  .magnet .capture__done { margin-top: auto; }
+  .magnet .capture__done .btn { margin-top: 0.75rem; }
+</style>

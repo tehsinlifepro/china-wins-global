@@ -2,11 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Funnel from '../components/Funnel.astro';
 import { verticals } from '../data/verticals';
+import { magnets } from '../data/leadMagnets';
 ---
 
 <BaseLayout
   title="LinkedIn Lead Generation for Factories & Manufacturers — China Wins Global"
   description="Western brands vet manufacturers on LinkedIn before sending an RFQ. We make your factory findable and trusted — and win you direct buyers."
 >
-  <Funnel content={verticals.factories.en} lang="en" />
+  <Funnel content={verticals.factories.en} lang="en" magnet={magnets['04'].en} magnetFile={magnets['04'].file} />
 </BaseLayout>

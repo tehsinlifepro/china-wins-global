@@ -1,7 +1,5 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import LegalDoc from '../../components/LegalDoc.astro';
+import { legal } from '../../data/legal';
 ---
-
-<BaseLayout title="Cookie 政策" lang="zh">
-  <h1>Cookie 政策 · ZH</h1>
-</BaseLayout>
+<LegalDoc doc={legal.cookies.zh} lang="zh" eyebrow="法律" />

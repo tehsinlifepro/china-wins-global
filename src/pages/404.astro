@@ -1,7 +1,18 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import ContentPage from '../layouts/ContentPage.astro';
 ---
 
-<BaseLayout title="404">
-  <h1>404</h1>
-</BaseLayout>
+<ContentPage
+  lang="en"
+  title="Page not found — China Wins Global"
+  description="The page you’re looking for doesn’t exist."
+  eyebrow="404"
+  heading="This page went cold."
+  lead="The page you’re looking for doesn’t exist — but your next client might. Let’s point you somewhere useful."
+>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/sourcing-agencies/">Sourcing agencies</a> · <a href="/freight-forwarders/">Freight</a> · <a href="/software/">Software</a> · <a href="/factories/">Factories</a></li>
+    <li><a href="/learn/">Learn</a> · <a href="/resources/">Free resources</a> · <a href="/contact/">Contact</a></li>
+  </ul>
+</ContentPage>

@@ -1,7 +1,49 @@
 ---
-import FunnelLayout from '../../layouts/FunnelLayout.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AuditForm from '../../components/AuditForm.astro';
+
+const resources = [
+  { title: '供应商领英主页检查清单', desc: '西方买家在回复前会检查的 12 个要点——以及如何逐一改好。' },
+  { title: '冷启动触达消息模板', desc: '真正能与进口商和品牌开启对话的开场白（且不像群发骚扰）。' },
+  { title: '展会 72 小时跟进系统', desc: '在名片变冷之前，把它们变成领英上的长期关系。' },
+];
 ---
 
-<FunnelLayout title="资源" lang="zh">
-  <h1>资源 · ZH</h1>
-</FunnelLayout>
+<BaseLayout
+  lang="zh"
+  title="免费资源 —— 中国赢全球"
+  description="务实、不灌水的实操手册，教你打造把陌生联系人变成客户的领英形象。"
+>
+  <section class="chapter chapter--light">
+    <div class="wrap">
+      <p class="eyebrow"><i></i><span>免费资源</span></p>
+      <h1 class="h2">赢得西方买家的实操手册。</h1>
+      <p class="page-lead">务实、不灌水的实操指南，教你打造把陌生联系人变成客户的领英形象。新资源持续更新——加入名单，第一时间获取。</p>
+
+      <div class="res-grid">
+        {resources.map((r) => (
+          <div class="res-card">
+            <h3>{r.title}</h3>
+            <p>{r.desc}</p>
+            <span class="res-soon">即将推出</span>
+          </div>
+        ))}
+      </div>
+
+      <div style="margin-top:3rem">
+        <h2 class="h2" style="font-size:1.6rem">抢先获取</h2>
+        <p class="page-lead">留下邮箱——新资源一发布我们就发给你，并附上你的免费领英诊断。</p>
+        <AuditForm lang="zh" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .res-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 2.5rem; }
+  .res-card { padding: 1.5rem; border: 1px solid var(--hairline); border-radius: 1.25rem; background: var(--paper); }
+  .res-card h3 { font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 0.5rem; }
+  .res-card p { color: var(--muted); line-height: 1.6; }
+  .res-soon { display: inline-block; margin-top: 1rem; font-size: 0.75rem; letter-spacing: 0.06em; color: var(--red); border: 1px solid var(--red-soft); border-radius: 999px; padding: 0.25rem 0.7rem; }
+  @media (max-width: 760px) { .res-grid { grid-template-columns: 1fr; } }
+</style>

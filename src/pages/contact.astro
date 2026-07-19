@@ -1,7 +1,18 @@
 ---
-import FunnelLayout from '../layouts/FunnelLayout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AuditForm from '../components/AuditForm.astro';
 ---
 
-<FunnelLayout title="Contact">
-  <h1>Contact</h1>
-</FunnelLayout>
+<BaseLayout
+  title="Contact — China Wins Global"
+  description="Start with a free LinkedIn audit, or reach us on WeChat. We help Chinese suppliers win global B2B clients on LinkedIn."
+>
+  <section class="chapter chapter--light">
+    <div class="wrap">
+      <p class="eyebrow"><i></i><span>Contact · 联系</span></p>
+      <h1 class="h2">Let’s build your pipeline.</h1>
+      <p class="page-lead">Start with a free LinkedIn audit — we’ll mystery-shop your company as a Western buyer and show you exactly what they see today, and the pipeline you’re missing. Prefer WeChat? Scan and say hi.</p>
+      <AuditForm lang="en" />
+    </div>
+  </section>
+</BaseLayout>

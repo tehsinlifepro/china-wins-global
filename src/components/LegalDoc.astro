@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import type { LegalContent } from '../data/legal';
+
+interface Props { doc: LegalContent; lang: 'en' | 'zh'; eyebrow: string; }
+const { doc, lang, eyebrow } = Astro.props;
+---
+
+<BaseLayout lang={lang} title={`${doc.title} — China Wins Global`} description={doc.intro}>
+  <section class="chapter chapter--light">
+    <div class="wrap wrap--narrow">
+      <header class="page-head">
+        <p class="eyebrow"><i></i><span>{eyebrow}</span></p>
+        <h1 class="h2">{doc.title}</h1>
+        <p class="page-meta">{doc.updated}</p>
+      </header>
+      <div class="prose">
+        <p>{doc.intro}</p>
+        {doc.sections.map((s) => (
+          <>
+            <h2>{s.h}</h2>
+            {s.body.map((para) => <p>{para}</p>)}
+          </>
+        ))}
+        <p class="legal-note">{doc.note}</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

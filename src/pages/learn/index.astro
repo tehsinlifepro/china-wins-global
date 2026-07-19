@@ -1,15 +1,56 @@
 ---
-import FunnelLayout from '../../layouts/FunnelLayout.astro';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('blog', ({ data }) => data.lang === 'en' && !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const courses = (await getCollection('courses', ({ data }) => data.lang === 'en' && !data.draft))
+  .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+const slug = (id: string) => id.replace(/^en\//, '');
 ---
 
-<FunnelLayout title="Learn">
-  <h1>Learn</h1>
-  <h2>Blog</h2>
-  <ul>
-    <li><a href="/learn/hello-world/">Hello World</a></li>
-  </ul>
-  <h2>Courses</h2>
-  <ul>
-    <li><a href="/learn/courses/getting-started/">Getting Started</a></li>
-  </ul>
-</FunnelLayout>
+<BaseLayout
+  title="Learn — China Wins Global"
+  description="Guides and courses on winning global B2B clients with LinkedIn — for China's suppliers, factories, forwarders, and software companies."
+>
+  <section class="chapter chapter--light">
+    <div class="wrap">
+      <p class="eyebrow"><i></i><span>Learn · 学院</span></p>
+      <h1 class="h2">The China Wins Global Academy</h1>
+      <p class="page-lead">Guides and courses on turning LinkedIn into a client pipeline. Written for suppliers selling to the West.</p>
+
+      <h2 class="h2" style="font-size:1.6rem;margin-top:3rem">Courses</h2>
+      <div class="learn-grid">
+        {courses.map((c) => (
+          <a class="learn-card" href={`/learn/courses/${slug(c.id)}/`}>
+            <span class={`learn-badge ${c.data.access}`}>{c.data.access === 'paid' ? 'Paid' : 'Free'}</span>
+            <h3>{c.data.title}</h3>
+            <p>{c.data.description}</p>
+          </a>
+        ))}
+      </div>
+
+      <h2 class="h2" style="font-size:1.6rem;margin-top:3rem">Articles</h2>
+      <div class="learn-grid">
+        {posts.map((p) => (
+          <a class="learn-card" href={`/learn/${slug(p.id)}/`}>
+            <h3>{p.data.title}</h3>
+            <p>{p.data.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .learn-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 1.5rem; }
+  .learn-card { display: block; padding: 1.5rem; border: 1px solid var(--hairline); border-radius: 1.25rem; background: var(--paper); text-decoration: none; color: var(--ink); transition: transform .35s var(--ease), border-color .35s var(--ease); }
+  .learn-card:hover { transform: translateY(-3px); border-color: var(--red-soft); }
+  .learn-card h3 { font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 0.4rem; }
+  .learn-card p { color: var(--muted); line-height: 1.6; font-size: 0.95rem; }
+  .learn-badge { display: inline-block; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 999px; margin-bottom: 0.75rem; }
+  .learn-badge.free { color: var(--green); border: 1px solid var(--green); }
+  .learn-badge.paid { color: var(--red); border: 1px solid var(--red-soft); }
+  @media (max-width: 760px) { .learn-grid { grid-template-columns: 1fr; } }
+</style>

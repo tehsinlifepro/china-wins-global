@@ -1,0 +1,30 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;        // <title> / SEO
+  description?: string;
+  lang?: 'en' | 'zh';
+  eyebrow?: string;     // small red label
+  heading: string;      // display heading on the page
+  lead?: string;        // intro paragraph
+  meta?: string;        // e.g. "Last updated…"
+}
+const { title, description, lang, eyebrow, heading, lead, meta } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} lang={lang}>
+  <section class="chapter chapter--light">
+    <div class="wrap wrap--narrow">
+      <header class="page-head">
+        {eyebrow && <p class="eyebrow"><i></i><span>{eyebrow}</span></p>}
+        <h1 class="h2">{heading}</h1>
+        {lead && <p class="page-lead">{lead}</p>}
+        {meta && <p class="page-meta">{meta}</p>}
+      </header>
+      <div class="prose">
+        <slot />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

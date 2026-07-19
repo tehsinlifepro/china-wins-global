@@ -1,7 +1,48 @@
 ---
-import FunnelLayout from '../layouts/FunnelLayout.astro';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const cases = (await getCollection('caseStudies', ({ data }) => data.lang === 'en' && !data.draft))
+  .sort((a, b) => (b.data.pubDate?.valueOf() ?? 0) - (a.data.pubDate?.valueOf() ?? 0));
 ---
 
-<FunnelLayout title="Case Studies">
-  <h1>Case Studies</h1>
-</FunnelLayout>
+<BaseLayout
+  title="Case Studies — China Wins Global"
+  description="Real results: how China's suppliers won Western B2B clients on LinkedIn."
+>
+  <section class="chapter chapter--light">
+    <div class="wrap">
+      <p class="eyebrow"><i></i><span>Case studies · 案例</span></p>
+      <h1 class="h2">Results, not promises.</h1>
+      <p class="page-lead">How suppliers, forwarders, and factories turned an empty LinkedIn presence into a steady pipeline of Western buyers.</p>
+
+      {cases.length > 0 && (
+        <div class="cs-grid">
+          {cases.map((c) => (
+            <article class="cs-card">
+              {c.data.industry && <span class="cs-industry">{c.data.industry}</span>}
+              <h3>{c.data.title}</h3>
+              <p>{c.data.description}</p>
+            </article>
+          ))}
+        </div>
+      )}
+
+      <div class="cs-cta">
+        <p class="page-lead" style="margin-top:0">New case studies are being published as our current clients hit their milestones. Want to be one of them?</p>
+        <a class="btn btn--primary" href="/contact/"><span>Get My Free LinkedIn Audit</span></a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .cs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin: 2.5rem 0; }
+  .cs-card { padding: 1.75rem; border: 1px solid var(--hairline); border-radius: 1.25rem; background: var(--paper); }
+  .cs-industry { display: inline-block; font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem; }
+  .cs-card h3 { font-family: var(--font-display); font-size: 1.4rem; margin-bottom: 0.5rem; }
+  .cs-card p { color: var(--muted); line-height: 1.65; }
+  .cs-cta { margin-top: 2.5rem; padding-top: 2.5rem; border-top: 1px solid var(--hairline); }
+  .cs-cta .btn { margin-top: 1.25rem; }
+  @media (max-width: 640px) { .cs-grid { grid-template-columns: 1fr; } }
+</style>

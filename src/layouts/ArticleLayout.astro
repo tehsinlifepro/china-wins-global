@@ -6,15 +6,25 @@ interface Props {
   description?: string;
   pubDate?: Date;
   lang?: 'en' | 'zh';
+  eyebrow?: string;
+  backHref?: string;
+  backLabel?: string;
 }
-
-const { title, description, pubDate, lang } = Astro.props;
+const { title, description, pubDate, lang, eyebrow, backHref, backLabel } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description} lang={lang}>
-  <article>
-    <h1>{title}</h1>
-    {pubDate && <time datetime={pubDate.toISOString()}>{pubDate.toDateString()}</time>}
-    <slot />
+  <article class="chapter chapter--light">
+    <div class="wrap wrap--narrow">
+      <header class="page-head">
+        {eyebrow && <p class="eyebrow"><i></i><span>{eyebrow}</span></p>}
+        <h1 class="h2">{title}</h1>
+        {pubDate && <p class="page-meta"><time datetime={pubDate.toISOString()}>{pubDate.toLocaleDateString(lang === 'zh' ? 'zh-CN' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time></p>}
+      </header>
+      <div class="prose">
+        <slot />
+      </div>
+      {backHref && <p style="margin-top:2.5rem"><a class="link-underline" href={backHref}>{backLabel}</a></p>}
+    </div>
   </article>
 </BaseLayout>

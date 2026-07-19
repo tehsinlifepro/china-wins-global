@@ -1,7 +1,19 @@
 ---
-import FunnelLayout from '../../layouts/FunnelLayout.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AuditForm from '../../components/AuditForm.astro';
 ---
 
-<FunnelLayout title="联系" lang="zh">
-  <h1>联系 · ZH</h1>
-</FunnelLayout>
+<BaseLayout
+  lang="zh"
+  title="联系我们 —— 中国赢全球"
+  description="从一次免费领英诊断开始，或通过微信联系我们。我们帮助中国供应商在领英赢得全球 B2B 客户。"
+>
+  <section class="chapter chapter--light">
+    <div class="wrap">
+      <p class="eyebrow"><i></i><span>联系</span></p>
+      <h1 class="h2">一起，搭建你的客户管道。</h1>
+      <p class="page-lead">从一次免费领英诊断开始——我们会以西方买家的视角「暗访」你的公司，让你看到他们今天眼中的你，以及你正在错过的客户管道。更习惯微信？扫码打个招呼。</p>
+      <AuditForm lang="zh" />
+    </div>
+  </section>
+</BaseLayout>

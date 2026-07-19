@@ -1,0 +1,63 @@
+---
+import { SITE } from '../config';
+
+interface Props { lang: 'en' | 'zh'; }
+const { lang } = Astro.props;
+
+const S = {
+  en: {
+    placeholder: 'you@company.com',
+    cta: 'Get My Free LinkedIn Audit',
+    success: 'Check your inbox — your audit request is in. We’ll be in touch shortly.',
+    invalid: 'Please enter a valid email address.',
+    wechat: 'Prefer WeChat? Scan to chat directly · 微信扫码直接聊',
+    emailLabel: 'Or email us directly',
+  },
+  zh: {
+    placeholder: 'you@company.com',
+    cta: '免费领取领英诊断',
+    success: '请查收邮箱——你的诊断申请已提交，我们会尽快联系你。',
+    invalid: '请输入有效的邮箱地址。',
+    wechat: '更习惯微信？扫码直接聊 · Prefer WeChat? Scan to chat',
+    emailLabel: '或直接邮件联系我们',
+  },
+}[lang];
+---
+
+<div class="audit">
+  <div class="audit__form">
+    <form
+      class="capture"
+      action={SITE.mailerlite.actionUrl}
+      method="post"
+      novalidate
+      data-msg-success={S.success}
+      data-msg-invalid={S.invalid}
+    >
+      <div class="capture__row">
+        <input class="capture__input" type="email" name="fields[email]" placeholder={S.placeholder} autocomplete="email" aria-label="Email" aria-required="true" />
+        <button class="btn btn--primary capture__btn" type="submit"><span>{S.cta}</span></button>
+      </div>
+      <input type="hidden" name="ml-submit" value="1" />
+      <input type="hidden" name="anticsrf" value="true" />
+      <p class="capture__msg" role="alert" aria-live="polite"></p>
+    </form>
+    <div class="capture__done" hidden><p>{S.success}</p></div>
+    <p class="audit__email">{S.emailLabel}: <a href={`mailto:${SITE.contact.email}`}>{SITE.contact.email}</a></p>
+  </div>
+  <div class="audit__wechat">
+    <a href="/assets/wechat-qr.jpg" target="_blank" rel="noopener" aria-label="WeChat QR">
+      <img src="/assets/wechat-qr.jpg" alt="WeChat QR — Tehsin" width="560" height="719" loading="lazy" />
+    </a>
+    <p class="audit__wechat-txt">{S.wechat}</p>
+  </div>
+</div>
+
+<style>
+  .audit { display: grid; grid-template-columns: 1.4fr 1fr; gap: 2.5rem; align-items: start; margin-top: 1rem; }
+  .audit__email { margin-top: 1rem; color: var(--muted); font-size: 0.95rem; }
+  .audit__email a { color: var(--red); }
+  .audit__wechat img { width: 100%; max-width: 220px; border-radius: 0.75rem; border: 1px solid var(--hairline); }
+  .audit__wechat-txt { margin-top: 0.75rem; color: var(--muted); font-size: 0.85rem; max-width: 220px; }
+  @media (max-width: 640px) { .audit { grid-template-columns: 1fr; } }
+</style>

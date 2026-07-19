@@ -1,7 +1,5 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import LegalDoc from '../../components/LegalDoc.astro';
+import { legal } from '../../data/legal';
 ---
-
-<BaseLayout title="隐私政策" lang="zh">
-  <h1>隐私政策 · ZH</h1>
-</BaseLayout>
+<LegalDoc doc={legal.privacy.zh} lang="zh" eyebrow="法律" />

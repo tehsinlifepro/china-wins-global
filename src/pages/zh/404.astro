@@ -1,7 +1,18 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContentPage from '../../layouts/ContentPage.astro';
 ---
 
-<BaseLayout title="404" lang="zh">
-  <h1>404 · ZH</h1>
-</BaseLayout>
+<ContentPage
+  lang="zh"
+  title="页面未找到 —— 中国赢全球"
+  description="你要找的页面不存在。"
+  eyebrow="404"
+  heading="这个页面「凉」了。"
+  lead="你要找的页面不存在——但你的下一个客户可能存在。我们带你去有用的地方。"
+>
+  <ul>
+    <li><a href="/zh/">首页</a></li>
+    <li><a href="/zh/sourcing-agencies/">采购代理</a> · <a href="/zh/freight-forwarders/">货代</a> · <a href="/zh/software/">软件</a> · <a href="/zh/factories/">工厂</a></li>
+    <li><a href="/zh/learn/">学院</a> · <a href="/zh/resources/">免费资源</a> · <a href="/zh/contact/">联系</a></li>
+  </ul>
+</ContentPage>

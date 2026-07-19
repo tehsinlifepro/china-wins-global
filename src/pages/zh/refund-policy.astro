@@ -1,7 +1,5 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import LegalDoc from '../../components/LegalDoc.astro';
+import { legal } from '../../data/legal';
 ---
-
-<BaseLayout title="退款政策" lang="zh">
-  <h1>退款政策 · ZH</h1>
-</BaseLayout>
+<LegalDoc doc={legal.refund.zh} lang="zh" eyebrow="法律" />

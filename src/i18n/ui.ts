@@ -5,7 +5,7 @@ export const ui = {
     'nav.freight-forwarders': 'Freight Forwarders',
     'nav.software': 'Software',
     'nav.factories': 'Factories',
-    'nav.s.agencies': 'Agencies',
+    'nav.s.agencies': 'Sourcing',
     'nav.s.freight': 'Freight',
     'nav.s.software': 'Software',
     'nav.s.factories': 'Factories',

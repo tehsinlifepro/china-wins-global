@@ -93,4 +93,35 @@
       window.addEventListener('resize', drawThread);
     }
   }
+
+  /* ---------- stat count-ups ([data-count]) ---------- */
+  document.querySelectorAll('[data-count]').forEach(function (el) {
+    var end = parseFloat(el.getAttribute('data-count'));
+    var dec = parseInt(el.getAttribute('data-decimals') || '0', 10);
+    if (isNaN(end)) return;
+    if (reduce || !('IntersectionObserver' in window)) {
+      el.textContent = end.toFixed(dec);
+      return;
+    }
+    var started = false;
+    var io2 = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting || started) return;
+        started = true;
+        io2.unobserve(el);
+        var t0 = null;
+        var dur = 1400;
+        var step = function (ts) {
+          if (!t0) t0 = ts;
+          var prog = Math.min(1, (ts - t0) / dur);
+          var eased = 1 - Math.pow(1 - prog, 3);
+          el.textContent = (end * eased).toFixed(dec);
+          if (prog < 1) requestAnimationFrame(step);
+          else el.textContent = end.toFixed(dec);
+        };
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.4 });
+    io2.observe(el);
+  });
 })();

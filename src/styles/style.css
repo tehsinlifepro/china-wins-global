@@ -18,8 +18,9 @@
   --hairline-strong: rgba(26, 21, 18, .22);
   --hairline-dark:   rgba(247, 243, 236, .14);
 
-  --font-display: "Fraunces", "Noto Serif SC", Georgia, serif;
-  --font-body:    "Plus Jakarta Sans", "Noto Sans SC", -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Fraunces", "Songti SC", "SimSun", Georgia, serif;
+  --font-body:    "Plus Jakarta Sans", "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", -apple-system, "Segoe UI", sans-serif;
+  --font-cjk-serif: "Songti SC", "SimSun", "Noto Serif SC", serif;
 
   --ease:    cubic-bezier(.32, .72, 0, 1);
   --ease-io: cubic-bezier(.65, 0, .35, 1);
@@ -31,8 +32,8 @@
 }
 
 html[data-lang="zh"] {
-  --font-display: "Noto Serif SC", "Fraunces", Georgia, serif;
-  --font-body:    "Noto Sans SC", "Plus Jakarta Sans", -apple-system, sans-serif;
+  --font-display: "Fraunces", "Songti SC", "SimSun", Georgia, serif;
+  --font-body:    "Plus Jakarta Sans", "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", -apple-system, sans-serif;
 }
 
 /* ---------- reset ---------- */
@@ -120,7 +121,7 @@ html[data-lang="zh"] .gloss-inline { display: none; }
                 background-color .45s var(--ease), border-color .45s var(--ease);
   }
   .cursor-ring span {
-    font-family: "Noto Serif SC", serif;
+    font-family: var(--font-cjk-serif);
     font-size: .8rem; font-weight: 600;
     letter-spacing: .1em;
     opacity: 0;
@@ -178,7 +179,7 @@ html[data-lang="zh"] .gloss-inline { display: none; }
   background: var(--red);
   color: #FFF7F0;
   border-radius: .45rem;
-  font-family: "Noto Serif SC", serif;
+  font-family: var(--font-cjk-serif);
   font-size: .95rem; font-weight: 600;
   transform: rotate(-3deg);
   box-shadow: 0 3px 8px -2px rgba(193, 59, 42, .5);

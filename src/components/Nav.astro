@@ -13,6 +13,16 @@ const links = [
   { href: `${p}/software/`, key: 'nav.s.software' },
   { href: `${p}/factories/`, key: 'nav.s.factories' },
 ] as const;
+
+const overlayLinks = [
+  { href: `${p}/sourcing-agencies/`, key: 'nav.sourcing-agencies' },
+  { href: `${p}/freight-forwarders/`, key: 'nav.freight-forwarders' },
+  { href: `${p}/software/`, key: 'nav.software' },
+  { href: `${p}/factories/`, key: 'nav.factories' },
+  { href: `${p}/resources/`, key: 'nav.resources' },
+  { href: `${p}/learn/`, key: 'nav.learn' },
+  { href: `${p}/about/`, key: 'nav.about' },
+] as const;
 ---
 
 <header class="nav" id="nav">
@@ -28,8 +38,18 @@ const links = [
     <a class="btn btn--small" href={`${p}/contact/`}>
       <span>{tr('nav.cta')}</span>
     </a>
+    <button class="nav__burger" id="burger" type="button" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
   </div>
 </header>
+
+<div class="nav-overlay" id="navOverlay" aria-hidden="true">
+  <nav class="nav-overlay__links" aria-label="Menu">
+    {overlayLinks.map((link) => <a href={link.href}>{tr(link.key)}</a>)}
+    <a class="nav-overlay__cta" href={`${p}/contact/`}>{tr('nav.cta')}</a>
+  </nav>
+</div>
 
 <style>
   .nav__lang {

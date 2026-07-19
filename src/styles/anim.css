@@ -1,0 +1,20 @@
+/* Scroll reveal — JS adds .will-reveal only to below-the-fold elements,
+   so there is never a flash of hidden above-the-fold content, and nothing
+   is hidden when JS is off. */
+.will-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.will-reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .will-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

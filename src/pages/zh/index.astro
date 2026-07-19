@@ -1,0 +1,133 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const verticals = [
+  { href: '/zh/sourcing-agencies/', seal: '采', title: '采购代理', desc: '让在领英上考察你的西方亚马逊卖家，主动开口合作。' },
+  { href: '/zh/freight-forwarders/', seal: '运', title: '货运代理', desc: '把进口商与电商品牌，变成稳定的物流客户管道。' },
+  { href: '/zh/software/', seal: '软', title: '软件 / SaaS', desc: '用供应链与电商买家，填满你的演示日程。' },
+  { href: '/zh/factories/', seal: '厂', title: '工厂', desc: '成为全球品牌愿意信任、反复下单的制造商。' },
+];
+---
+
+<BaseLayout
+  lang="zh"
+  title="中国赢全球 —— 为中国供应商打造的领英获客引擎"
+  description="我们为中国供应商打造领英形象与获客引擎，让西方买家主动找上门。"
+>
+  <!-- HERO -->
+  <section class="chapter chapter--light hero" id="hero">
+    <div class="wrap hero__grid">
+      <div class="hero__copy">
+        <p class="eyebrow"><i></i><span>面向全球贸易的领英获客引擎 · 深圳 / 广州 / 义乌</span></p>
+        <h1 class="hero__title">中国制造，<br />让世界<em>主动找到你。</em></h1>
+        <p class="hero__sub">我们为中国供应商打造领英形象与外呼获客引擎，让你成为西方买家第一个主动联系的伙伴 —— 而不是名片堆里的第十五张。</p>
+        <div class="hero__ctas">
+          <a class="btn btn--primary" href="/zh/contact/">
+            <span>免费领取领英账户诊断</span>
+            <span class="btn__orb" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 13 13 3M6 3h7v7" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+          </a>
+          <a class="link-underline" href="#who">看看我们服务谁</a>
+        </div>
+        <p class="hero__trust">
+          <span>获跨境供应商信赖</span>
+          <i class="tick" aria-hidden="true"></i>
+          <span>90 天 30 次高质量对话 —— 保证达成</span>
+        </p>
+      </div>
+      <div class="hero__aside" aria-hidden="true">
+        <div class="booth-card shell">
+          <div class="core">
+            <p class="booth-card__label">与此同时，在领英上……</p>
+            <div class="msg">
+              <span class="msg__avatar">JS</span>
+              <div>
+                <p class="msg__name">J. Sanders · 亚马逊 FBA，美国</p>
+                <p class="msg__text">你好 —— 看到你的主页。你们做厨房收纳吗？在找长期合作伙伴。</p>
+              </div>
+            </div>
+            <div class="msg msg--you">
+              <span class="msg__avatar msg__avatar--you">你</span>
+              <div>
+                <p class="msg__name">你 · 2 分钟后</p>
+                <p class="msg__text">是的 —— 这是我们的主力品类，已审厂 14 家。这是我们的产品目录……</p>
+              </div>
+            </div>
+            <p class="booth-card__foot"><span class="pulse" aria-hidden="true"></span><span>对话已开始 · 管道阶段：温热</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO WE HELP -->
+  <section class="chapter chapter--dark" id="who">
+    <div class="wrap">
+      <p class="eyebrow eyebrow--dark"><i></i><span>服务对象</span></p>
+      <h2 class="h2 h2--dark">四大行业，一套增长引擎。</h2>
+      <div class="who__grid">
+        {verticals.map((v) => (
+          <a class="who__card" href={v.href}>
+            <span class="who__seal" aria-hidden="true">{v.seal}</span>
+            <h3 class="who__title">{v.title}</h3>
+            <p class="who__desc">{v.desc}</p>
+            <span class="who__go" aria-hidden="true">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING CTA -->
+  <section class="chapter chapter--light" id="cta">
+    <div class="wrap wrap--narrow" style="text-align:center">
+      <h2 class="h2">准备好成为他们第一个找到的供应商了吗？</h2>
+      <p class="hero__sub" style="margin-inline:auto">从一次免费领英诊断开始。我们会告诉你，西方买家现在看到的是什么 —— 以及你正在错过的客户管道。</p>
+      <div class="hero__ctas" style="justify-content:center">
+        <a class="btn btn--primary" href="/zh/contact/"><span>免费领取领英账户诊断</span></a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .who__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+  .who__card {
+    position: relative;
+    display: block;
+    padding: 1.75rem;
+    border-radius: 1.25rem;
+    background: rgba(247, 243, 236, 0.05);
+    border: 1px solid var(--hairline-dark);
+    color: var(--cream);
+    text-decoration: none;
+    transition: transform 0.4s var(--ease), background-color 0.4s var(--ease), border-color 0.4s var(--ease);
+  }
+  .who__card:hover {
+    transform: translateY(-4px);
+    background: rgba(247, 243, 236, 0.09);
+    border-color: rgba(227, 155, 139, 0.4);
+  }
+  .who__seal {
+    display: inline-grid;
+    place-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 0.6rem;
+    background: var(--red);
+    color: #fff7f0;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.15rem;
+    margin-bottom: 1rem;
+  }
+  .who__title { font-family: var(--font-display); font-size: 1.4rem; margin-bottom: 0.5rem; }
+  .who__desc { color: rgba(247, 243, 236, 0.6); font-size: 0.95rem; line-height: 1.6; }
+  .who__go { position: absolute; top: 1.75rem; right: 1.75rem; color: var(--red-soft); font-size: 1.2rem; }
+  @media (max-width: 720px) {
+    .who__grid { grid-template-columns: 1fr; }
+  }
+</style>

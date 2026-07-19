@@ -1,0 +1,28 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+
+const site = Astro.site ?? new URL('https://EXAMPLE.com');
+const canonical = new URL(Astro.url.pathname, site).href;
+
+// Placeholder hreflang logic: derive the en/zh twins of the current path.
+const path = Astro.url.pathname;
+const isZh = path.startsWith('/zh/') || path === '/zh';
+const enPath = isZh ? path.replace(/^\/zh/, '') || '/' : path;
+const zhPath = isZh ? path : `/zh${path === '/' ? '/' : path}`;
+const enUrl = new URL(enPath, site).href;
+const zhUrl = new URL(zhPath, site).href;
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+{description && <meta name="description" content={description} />}
+<link rel="canonical" href={canonical} />
+<link rel="alternate" hreflang="en" href={enUrl} />
+<link rel="alternate" hreflang="zh" href={zhUrl} />
+<link rel="alternate" hreflang="x-default" href={enUrl} />

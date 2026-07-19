@@ -1,0 +1,47 @@
+---
+import { getLangFromUrl, getAlternatePath, t } from '../i18n/utils';
+import { SITE } from '../config';
+
+const lang = getLangFromUrl(Astro.url);
+const tr = t(lang);
+const p = lang === 'zh' ? '/zh' : '';
+const alt = getAlternatePath(Astro.url);
+
+const links = [
+  { href: `${p}/sourcing-agencies/`, key: 'nav.s.agencies' },
+  { href: `${p}/freight-forwarders/`, key: 'nav.s.freight' },
+  { href: `${p}/software/`, key: 'nav.s.software' },
+  { href: `${p}/factories/`, key: 'nav.s.factories' },
+] as const;
+---
+
+<header class="nav" id="nav">
+  <a class="nav__brand" href={`${p}/`}>
+    <span class="nav__seal" aria-hidden="true">{SITE.seal}</span>
+    <span class="nav__word">{tr('footer.brand')}</span>
+  </a>
+  <nav class="nav__links" aria-label="Sections">
+    {links.map((link) => <a href={link.href}>{tr(link.key)}</a>)}
+  </nav>
+  <div class="nav__right">
+    <a class="nav__lang" href={alt} aria-label="Switch language">{tr('lang.switch')}</a>
+    <a class="btn btn--small" href={`${p}/contact/`}>
+      <span>{tr('nav.cta')}</span>
+    </a>
+  </div>
+</header>
+
+<style>
+  .nav__lang {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 0.4rem 0.6rem;
+    border-radius: 999px;
+    text-decoration: none;
+    color: var(--ink);
+    opacity: 0.75;
+    transition: opacity 0.3s var(--ease);
+  }
+  .nav__lang:hover { opacity: 1; }
+</style>

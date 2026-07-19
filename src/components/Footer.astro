@@ -1,0 +1,76 @@
+---
+import { getLangFromUrl, t } from '../i18n/utils';
+import { SITE } from '../config';
+
+const lang = getLangFromUrl(Astro.url);
+const tr = t(lang);
+const p = lang === 'zh' ? '/zh' : '';
+const year = 2026;
+
+const nav = [
+  { href: `${p}/sourcing-agencies/`, key: 'nav.sourcing-agencies' },
+  { href: `${p}/freight-forwarders/`, key: 'nav.freight-forwarders' },
+  { href: `${p}/software/`, key: 'nav.software' },
+  { href: `${p}/factories/`, key: 'nav.factories' },
+  { href: `${p}/resources/`, key: 'nav.resources' },
+  { href: `${p}/learn/`, key: 'nav.learn' },
+  { href: `${p}/about/`, key: 'nav.about' },
+  { href: `${p}/case-studies/`, key: 'nav.case-studies' },
+  { href: `${p}/contact/`, key: 'nav.contact' },
+] as const;
+
+const legal = [
+  { href: `${p}/privacy/`, key: 'footer.privacy' },
+  { href: `${p}/terms/`, key: 'footer.terms' },
+  { href: `${p}/cookies/`, key: 'footer.cookies' },
+  { href: `${p}/disclaimer/`, key: 'footer.disclaimer' },
+  { href: `${p}/refund-policy/`, key: 'footer.refund-policy' },
+] as const;
+---
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <p class="footer__brand">
+      <span class="nav__seal" aria-hidden="true">{SITE.seal}</span>
+      <span>{tr('footer.brand')}</span>
+    </p>
+
+    <nav class="footer__cols" aria-label="Footer">
+      <ul>
+        {nav.map((l) => <li><a href={l.href}>{tr(l.key)}</a></li>)}
+      </ul>
+      <ul>
+        {legal.map((l) => <li><a href={l.href}>{tr(l.key)}</a></li>)}
+      </ul>
+      <ul>
+        <li><a href={`mailto:${SITE.contact.email}`}>{SITE.contact.email}</a></li>
+        <li>WeChat / 微信: {SITE.contact.wechat}</li>
+      </ul>
+    </nav>
+
+    <p class="footer__note">{tr('footer.note')}</p>
+    <p class="footer__legal">© {year} {tr('footer.brand')} · {tr('footer.copyright')}</p>
+  </div>
+</footer>
+
+<style>
+  .footer__cols {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem 2rem;
+    margin: 2rem 0 1.75rem;
+    width: 100%;
+  }
+  .footer__cols ul { display: flex; flex-direction: column; gap: 0.55rem; }
+  .footer__cols a,
+  .footer__cols li {
+    font-size: 0.86rem;
+    color: rgba(247, 243, 236, 0.62);
+    text-decoration: none;
+    transition: color 0.3s var(--ease);
+  }
+  .footer__cols a:hover { color: var(--cream); }
+  @media (max-width: 640px) {
+    .footer__cols { grid-template-columns: 1fr 1fr; }
+  }
+</style>

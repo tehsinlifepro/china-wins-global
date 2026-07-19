@@ -1,0 +1,19 @@
+---
+import { getCollection, render } from 'astro:content';
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+
+export async function getStaticPaths() {
+  const courses = await getCollection('courses', ({ data }) => data.lang === 'en' && !data.draft);
+  return courses.map((course) => ({
+    params: { slug: course.id.replace(/^en\//, '') },
+    props: { course },
+  }));
+}
+
+const { course } = Astro.props;
+const { Content } = await render(course);
+---
+
+<ArticleLayout title={course.data.title} description={course.data.description} pubDate={course.data.pubDate} lang="en">
+  <Content />
+</ArticleLayout>

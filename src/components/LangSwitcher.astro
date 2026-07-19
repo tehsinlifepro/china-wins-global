@@ -1,0 +1,9 @@
+---
+import { getLangFromUrl, getAlternatePath, t } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const tr = t(lang);
+const alternatePath = getAlternatePath(Astro.url);
+---
+
+<a href={alternatePath}>{tr('lang.switch')}</a>

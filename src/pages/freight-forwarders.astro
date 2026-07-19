@@ -1,13 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Funnel from '../components/Funnel.astro';
-import { verticals } from '../data/verticals';
-import { magnets } from '../data/leadMagnets';
+import FreightOffer from '../components/FreightOffer.astro';
 ---
 
 <BaseLayout
-  title="LinkedIn Lead Generation for Freight Forwarders — China Wins Global"
-  description="Western importers vet forwarders on LinkedIn before they ask for a quote. We build the presence and pipeline that wins direct, high-margin shippers."
+  title="The Direct-Shipper Engine — LinkedIn Lead Generation for Freight Forwarders | China Wins Global"
+  description="Western importers pick the forwarder they trust, not the cheapest line. The Direct-Shipper Engine builds you a pipeline of direct, repeat importer clients in 90 days — done for you. 30 qualified conversations guaranteed."
 >
-  <Funnel content={verticals.freight.en} lang="en" magnet={magnets['02'].en} magnetFile={magnets['02'].file} />
+  <FreightOffer lang="en" />
 </BaseLayout>

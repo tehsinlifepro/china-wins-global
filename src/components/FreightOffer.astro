@@ -1,0 +1,198 @@
+---
+import { freightOffer } from '../data/freightOffer';
+import { magnets } from '../data/leadMagnets';
+import LeadMagnet from './LeadMagnet.astro';
+import AuditForm from './AuditForm.astro';
+
+interface Props { lang: 'en' | 'zh'; }
+const { lang } = Astro.props;
+const c = freightOffer[lang];
+
+const card = {
+  en: { label: 'Meanwhile, on LinkedIn…', n1: 'M. Rivera · DTC brand, US', m1: 'Need a dependable forwarder for 深圳→LA, 2×40HQ/mo. Loved your post on avoiding Q4 delays — can you quote?', n2: 'You · same day', m2: 'Absolutely — that’s our core lane. Rate + transit below, plus how we route around the Q4 backlog…', foot: 'Quote request · pipeline stage: warm' },
+  zh: { label: '与此同时，在领英上……', n1: 'M. Rivera · DTC 品牌，美国', m1: '需要一家可靠货代走 深圳→洛杉矶，每月 2×40HQ。很喜欢你那篇避开 Q4 拥堵的帖子——能报个价吗？', n2: '你 · 当天', m2: '当然——这正是我们的核心航线。报价与时效在下方，另附我们如何绕开 Q4 积压……', foot: '询价 · 管道阶段：温热' },
+}[lang];
+---
+
+<!-- HERO -->
+<section class="chapter chapter--light hero">
+  <div class="wrap hero__grid">
+    <div class="hero__copy">
+      <p class="eyebrow"><i></i><span>{c.hero.eyebrow}</span></p>
+      <h1 class="hero__title"><span set:html={c.hero.t1} /><br /><span set:html={c.hero.t2} /></h1>
+      <p class="hero__sub">{c.hero.sub}</p>
+      {c.hero.gloss && <p class="gloss" lang="zh-CN">{c.hero.gloss}</p>}
+      <div class="hero__ctas">
+        <a class="btn btn--primary" href="#offer"><span>{c.hero.ctaSecondary}</span>
+          <span class="btn__orb" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 13 13 3M6 3h7v7" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+        </a>
+        <a class="link-underline" href="#final">{c.hero.ctaPrimary}</a>
+      </div>
+      <p class="hero__trust"><span>{c.hero.trust1}</span><i class="tick" aria-hidden="true"></i><span>{c.hero.trust2}</span></p>
+    </div>
+    <div class="hero__aside" aria-hidden="true">
+      <div class="fo-bezel">
+        <div class="fo-bezel__core">
+          <p class="booth-card__label">{card.label}</p>
+          <div class="msg"><span class="msg__avatar">MR</span><div><p class="msg__name">{card.n1}</p><p class="msg__text">{card.m1}</p></div></div>
+          <div class="msg msg--you"><span class="msg__avatar msg__avatar--you">你</span><div><p class="msg__name">{card.n2}</p><p class="msg__text">{card.m2}</p></div></div>
+          <p class="booth-card__foot"><span class="pulse" aria-hidden="true"></span><span>{card.foot}</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="chapter chapter--dark">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow eyebrow--dark"><i></i><span>{c.problem.eyebrow}</span></p>
+    <h2 class="h2 h2--dark">{c.problem.title}</h2>
+    <div class="fo-prose-dark">{c.problem.body.map((p) => <p>{p}</p>)}</div>
+  </div>
+</section>
+
+<!-- COST -->
+<section class="chapter chapter--dark">
+  <div class="wrap">
+    <p class="eyebrow eyebrow--dark"><i></i><span>{c.cost.eyebrow}</span></p>
+    <h2 class="h2 h2--dark">{c.cost.title}</h2>
+    <div class="fo-cost">
+      {c.cost.items.map((it, i) => (
+        <div class="fo-cost__cell"><span class="fo-cost__n">{String(i + 1).padStart(2, '0')}</span><h3>{it.title}</h3><p>{it.body}</p></div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- OFFER (value stack island) -->
+<section class="chapter chapter--light" id="offer">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow" style="justify-content:center;display:flex"><i></i><span>{c.offer.eyebrow}</span></p>
+    <h2 class="h2" style="text-align:center">{c.offer.name}</h2>
+    <p class="fo-tagline">{c.offer.tagline}</p>
+
+    <div class="fo-island">
+      <div class="fo-island__core">
+        <p class="fo-stack__lead">{c.offer.sub}</p>
+        <ul class="fo-stack">
+          {c.offer.stack.map((s) => (
+            <li class={`fo-stack__row ${s.bonus ? 'is-bonus' : ''}`}>
+              <span class="fo-stack__item">{s.bonus && <span class="fo-stack__tag">Bonus</span>}{s.item}</span>
+              <span class="fo-stack__val">{s.value}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="fo-total">
+          <span>{c.offer.totalLabel}</span>
+          <span class="fo-total__val">{c.offer.totalRecurring} <em>{c.offer.totalOnce}</em></span>
+        </div>
+        <div class="fo-price">
+          <span class="fo-price__label">{c.offer.priceLabel}</span>
+          <div class="fo-price__num">{c.offer.price}</div>
+          <p class="fo-price__note">{c.offer.setupNote}</p>
+          <a class="btn btn--primary btn--big" href="#final"><span>{c.offer.cta}</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="chapter chapter--dark">
+  <div class="wrap wrap--narrow" style="text-align:center">
+    <p class="eyebrow eyebrow--dark" style="justify-content:center;display:flex"><i></i><span>{c.guarantee.eyebrow}</span></p>
+    <h2 class="h2 h2--dark">{c.guarantee.title}</h2>
+    <p class="fo-lede-dark" style="margin-inline:auto">{c.guarantee.body}</p>
+  </div>
+</section>
+
+<!-- SCARCITY -->
+<section class="chapter chapter--light">
+  <div class="wrap wrap--narrow">
+    <div class="fo-scarcity">
+      <p class="eyebrow"><i></i><span>{c.scarcity.eyebrow}</span></p>
+      <h3 class="fo-scarcity__title">{c.scarcity.title}</h3>
+      <p class="fo-scarcity__body">{c.scarcity.body}</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="chapter chapter--light" id="faq">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow"><i></i><span>{c.faq.eyebrow}</span></p>
+    <h2 class="h2">{c.faq.title}</h2>
+    <div class="fo-faq">
+      {c.faq.items.map((f) => (
+        <details class="fo-faq__item"><summary>{f.q}</summary><p>{f.a}</p></details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- FREE RESOURCE -->
+<section class="chapter chapter--light">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow"><i></i><span>{lang === 'zh' ? '免费资源' : 'Free resource · 免费资源'}</span></p>
+    <LeadMagnet magnet={magnets['02'][lang]} file={magnets['02'].file} lang={lang} featured />
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="chapter chapter--dark final" id="final">
+  <div class="wrap final__inner">
+    <p class="eyebrow eyebrow--dark"><i></i><span>{c.final.eyebrow}</span></p>
+    <h2 class="h2 h2--dark">{c.final.title}</h2>
+    <p class="fo-lede-dark">{c.final.sub}</p>
+    <div style="margin-top:1.75rem"><AuditForm lang={lang} /></div>
+  </div>
+</section>
+
+<style>
+  .fo-bezel { padding: 0.5rem; border-radius: 2rem; background: rgba(26,21,18,0.04); border: 1px solid var(--hairline); box-shadow: 0 40px 80px -40px rgba(26,21,18,0.25); }
+  .fo-bezel__core { border-radius: 1.5rem; background: var(--paper); box-shadow: inset 0 1px 1px rgba(255,255,255,0.6); padding: 1.5rem; }
+
+  .fo-prose-dark p, .fo-lede-dark { color: rgba(247,243,236,0.72); font-size: 1.1rem; line-height: 1.8; margin-top: 1.1rem; max-width: 46rem; }
+
+  .fo-cost { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 2.5rem; }
+  .fo-cost__cell { padding: 1.5rem; border-top: 1px solid var(--hairline-dark); }
+  .fo-cost__n { font-family: var(--font-display); font-style: italic; color: var(--red-soft); font-size: 1.1rem; }
+  .fo-cost__cell h3 { color: var(--cream); font-family: var(--font-display); font-size: 1.3rem; margin: .5rem 0; }
+  .fo-cost__cell p { color: rgba(247,243,236,0.6); line-height: 1.6; }
+
+  .fo-tagline { text-align: center; color: var(--muted); font-size: 1.1rem; line-height: 1.6; max-width: 40rem; margin: 1rem auto 0; }
+
+  .fo-island { margin-top: 2.5rem; padding: 0.5rem; border-radius: 2rem; background: rgba(26,21,18,0.04); border: 1px solid var(--red-soft); box-shadow: 0 50px 100px -50px rgba(193,59,42,0.4); }
+  .fo-island__core { border-radius: 1.5rem; background: linear-gradient(180deg, var(--paper), #fff); box-shadow: inset 0 1px 1px rgba(255,255,255,0.7); padding: clamp(1.5rem, 4vw, 2.75rem); }
+  .fo-stack__lead { color: var(--muted); margin-bottom: 1.25rem; }
+  .fo-stack { display: flex; flex-direction: column; }
+  .fo-stack__row { display: flex; justify-content: space-between; align-items: baseline; gap: 1.5rem; padding: 0.9rem 0; border-top: 1px solid var(--hairline); }
+  .fo-stack__row:first-child { border-top: 0; }
+  .fo-stack__item { color: var(--ink); line-height: 1.5; }
+  .fo-stack__val { font-family: var(--font-display); color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .fo-stack__row.is-bonus .fo-stack__item { color: var(--red-deep); }
+  .fo-stack__row.is-bonus .fo-stack__val { color: var(--red); }
+  .fo-stack__tag { display: inline-block; font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--red); border: 1px solid var(--red-soft); border-radius: 999px; padding: 0.1rem 0.5rem; margin-right: 0.5rem; vertical-align: middle; }
+  .fo-total { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 2px solid var(--ink); }
+  .fo-total > span:first-child { color: var(--muted); font-size: 0.9rem; letter-spacing: 0.04em; text-transform: uppercase; }
+  .fo-total__val { font-family: var(--font-display); font-size: 1.4rem; color: var(--ink); text-align: right; }
+  .fo-total__val em { display: block; font-size: 0.85rem; color: var(--muted); font-style: normal; }
+  .fo-price { text-align: center; margin-top: 2.25rem; padding-top: 2rem; border-top: 1px dashed var(--hairline-strong); }
+  .fo-price__label { color: var(--muted); font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .fo-price__num { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 3.4rem); color: var(--ink); line-height: 1.1; margin: 0.5rem 0; }
+  .fo-price__note { color: var(--muted); max-width: 34rem; margin: 0 auto 1.5rem; line-height: 1.6; }
+
+  .fo-scarcity { border: 1px solid var(--red-soft); border-radius: 1.5rem; background: rgba(193,59,42,0.04); padding: clamp(1.5rem, 4vw, 2.5rem); }
+  .fo-scarcity__title { font-family: var(--font-display); font-size: 1.6rem; margin: 0.5rem 0; }
+  .fo-scarcity__body { color: var(--muted); line-height: 1.7; max-width: 44rem; }
+
+  .fo-faq { margin-top: 2rem; }
+  .fo-faq__item { border-top: 1px solid var(--hairline); padding: 1.15rem 0; }
+  .fo-faq__item summary { font-family: var(--font-display); font-size: 1.2rem; cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+  .fo-faq__item summary::after { content: '+'; color: var(--red); font-size: 1.3rem; }
+  .fo-faq__item[open] summary::after { content: '−'; }
+  .fo-faq__item p { color: var(--muted); line-height: 1.7; margin-top: 0.75rem; }
+
+  @media (max-width: 820px) { .fo-cost { grid-template-columns: 1fr; } .fo-stack__row { flex-direction: column; gap: 0.2rem; } .fo-stack__val { align-self: flex-start; } }
+</style>

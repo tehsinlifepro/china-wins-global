@@ -1,14 +1,12 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Funnel from '../../components/Funnel.astro';
-import { verticals } from '../../data/verticals';
-import { magnets } from '../../data/leadMagnets';
+import FreightOffer from '../../components/FreightOffer.astro';
 ---
 
 <BaseLayout
   lang="zh"
-  title="货运代理的领英获客引擎 —— 中国赢全球"
-  description="西方进口商在索要报价前，先在领英考察你。我们打造让你赢得直接、高毛利货主的形象与客户管道。"
+  title="直客货代引擎 —— 货运代理的领英获客系统 | 中国赢全球"
+  description="西方进口商选的是他们信任的货代，而非最低价。「直客货代引擎」在 90 天内为你搭建一条直客、回头的进口商管道——全程代运营。90 天 30 次高质量对话，保证达成。"
 >
-  <Funnel content={verticals.freight.zh} lang="zh" magnet={magnets['02'].zh} magnetFile={magnets['02'].file} />
+  <FreightOffer lang="zh" />
 </BaseLayout>

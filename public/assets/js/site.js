@@ -71,4 +71,25 @@
       }, 500);
     });
   }
+
+  /* ---------- homepage red thread (draws on scroll) ---------- */
+  var threadPath = document.getElementById('homeThreadPath');
+  if (threadPath && typeof threadPath.getTotalLength === 'function') {
+    var len = threadPath.getTotalLength();
+    threadPath.style.strokeDasharray = String(len);
+    if (reduce) {
+      threadPath.style.strokeDashoffset = '0';
+    } else {
+      threadPath.style.strokeDashoffset = String(len);
+      var drawThread = function () {
+        var scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        var prog = scrollable > 0 ? Math.min(1, Math.max(0, window.scrollY / scrollable)) : 1;
+        threadPath.style.strokeDashoffset = String(len * (1 - prog));
+      };
+      drawThread();
+      if (lenis) lenis.on('scroll', drawThread);
+      window.addEventListener('scroll', drawThread, { passive: true });
+      window.addEventListener('resize', drawThread);
+    }
+  }
 })();

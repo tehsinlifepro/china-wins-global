@@ -48,6 +48,7 @@
       '.chapter .gloss', '.chapter .hero__ctas', '.chapter .page-lead', '.chapter .section-lede',
       '.chapter .prose > *', '.cost-cell', '.deliver-cell', '.who__card', '.learn-card',
       '.res-card', '.cs-card', '.price-cell', '.faq-item', '.final__inner > *', '.audit',
+      '[data-reveal]',
     ].join(', ');
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {

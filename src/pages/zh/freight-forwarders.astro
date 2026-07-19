@@ -1,7 +1,13 @@
 ---
-import FunnelLayout from '../../layouts/FunnelLayout.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Funnel from '../../components/Funnel.astro';
+import { verticals } from '../../data/verticals';
 ---
 
-<FunnelLayout title="货运代理" lang="zh">
-  <h1>货运代理 · ZH</h1>
-</FunnelLayout>
+<BaseLayout
+  lang="zh"
+  title="货运代理的领英获客引擎 —— 中国赢全球"
+  description="西方进口商在索要报价前，先在领英考察你。我们打造让你赢得直接、高毛利货主的形象与客户管道。"
+>
+  <Funnel content={verticals.freight.zh} lang="zh" />
+</BaseLayout>

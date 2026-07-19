@@ -1,0 +1,265 @@
+---
+import { SITE } from '../config';
+import type { FunnelContent } from '../data/verticals';
+
+interface Props {
+  content: FunnelContent;
+  lang: 'en' | 'zh';
+}
+const { content, lang } = Astro.props;
+
+const S = {
+  en: {
+    seeHow: 'See how it works',
+    problemEyebrow: 'The problem · 问题',
+    costEyebrow: 'The cost · 代价',
+    engineEyebrow: 'The engine · 引擎',
+    engineTitle: 'How we build your pipeline',
+    engineLede: 'One done-for-you system that turns your LinkedIn into a predictable client pipeline.',
+    deliverables: [
+      { t: 'Profile & company-page optimization', b: 'The foundation buyers judge you on — rebuilt to convert.' },
+      { t: '400 fresh target buyers every month', b: 'A constantly refreshed list of the exact decision-makers you want.' },
+      { t: '12 posts + 200 strategic comments / month', b: 'Consistent proof and visibility, written and published for you.' },
+      { t: 'Full outreach campaigns, done for you', b: 'Personalized, human outreach that starts real conversations.' },
+      { t: 'Live dashboard + weekly strategy calls', b: 'Watch every lead move from cold, to warm, to closed.' },
+    ],
+    pricingEyebrow: 'Pricing · 价格',
+    pricingTitle: 'Simple, senior-level pricing',
+    setupLabel: 'One-time setup',
+    monthlyLabel: 'Monthly',
+    pricingNote: 'Two clients maximum at a time — every account gets senior attention.',
+    guaranteeEyebrow: 'The guarantee · 保证',
+    guaranteeTitle: 'The 30-Conversation Guarantee',
+    guaranteeBody: '30 qualified conversations in 90 days, or Month 4 is free. Still not at 30 by Month 6 — full refund.',
+    faqEyebrow: 'FAQ · 常见问题',
+    faqTitle: 'Questions, answered',
+    finalEyebrow: 'Free audit · 免费诊断',
+    finalTitle: 'Get your free LinkedIn audit',
+    ctaEmail: 'you@company.com',
+    cta: 'Get My Free LinkedIn Audit',
+    success: 'Check your inbox — your audit request is in. We’ll be in touch shortly.',
+    invalid: 'Please enter a valid email address.',
+    wechat: 'Prefer WeChat? Scan and chat directly · 微信扫码直接聊',
+    micro: 'The 30-Conversation Guarantee: 30 qualified conversations in 90 days, or Month 4 is free. Still not at 30 by Month 6 — full refund.',
+  },
+  zh: {
+    seeHow: '了解运作方式',
+    problemEyebrow: '问题',
+    costEyebrow: '代价',
+    engineEyebrow: '引擎',
+    engineTitle: '我们如何为你搭建管道',
+    engineLede: '一套「全托管」系统，把你的领英变成可预测的客户管道。',
+    deliverables: [
+      { t: '账号与公司主页优化', b: '买家评判你的第一印象——重建为「会转化」的主页。' },
+      { t: '每月 400 个精准目标买家', b: '持续更新的名单，锁定你真正想要的决策者。' },
+      { t: '每月 12 篇内容 + 200 条战略评论', b: '稳定的背书与曝光，全部由我们撰写并发布。' },
+      { t: '全流程触达获客，全程代运营', b: '个性化、有温度的触达，开启真实对话。' },
+      { t: '实时管道看板 + 每周策略沟通', b: '看着每条线索从冷、到温、到成交。' },
+    ],
+    pricingEyebrow: '价格',
+    pricingTitle: '简单、资深级的定价',
+    setupLabel: '一次性启动费',
+    monthlyLabel: '月度',
+    pricingNote: '同一时间最多服务两家客户——每个账户都由资深团队亲自负责。',
+    guaranteeEyebrow: '保证',
+    guaranteeTitle: '30 次对话保证',
+    guaranteeBody: '90 天内 30 次高质量对话，否则第 4 个月免费；第 6 个月仍未达标，全额退款。',
+    faqEyebrow: '常见问题',
+    faqTitle: '常见问题解答',
+    finalEyebrow: '免费诊断',
+    finalTitle: '免费领取领英诊断',
+    ctaEmail: 'you@company.com',
+    cta: '免费领取领英诊断',
+    success: '请查收邮箱——你的诊断申请已提交，我们会尽快联系你。',
+    invalid: '请输入有效的邮箱地址。',
+    wechat: '更习惯微信？扫码直接聊 · Prefer WeChat? Scan to chat',
+    micro: '30 次对话保证：90 天内 30 次高质量对话，否则第 4 个月免费；第 6 个月仍未达标，全额退款。',
+  },
+}[lang];
+
+const p = lang === 'zh' ? '/zh' : '';
+---
+
+<!-- HERO -->
+<section class="chapter chapter--light hero" id="hero">
+  <div class="wrap hero__grid">
+    <div class="hero__copy">
+      <p class="eyebrow"><i></i><span>{content.eyebrow}</span></p>
+      <h1 class="hero__title">
+        <span set:html={content.heroT1} /><br /><span set:html={content.heroT2} />
+      </h1>
+      <p class="hero__sub">{content.heroSub}</p>
+      {content.heroGloss && <p class="gloss" lang="zh-CN">{content.heroGloss}</p>}
+      <div class="hero__ctas">
+        <a class="btn btn--primary" href="#final">
+          <span>{S.cta}</span>
+          <span class="btn__orb" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 13 13 3M6 3h7v7" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+        </a>
+        <a class="link-underline" href="#engine">{S.seeHow}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="chapter chapter--dark" id="problem">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow eyebrow--dark"><i></i><span>{S.problemEyebrow}</span></p>
+    <h2 class="h2 h2--dark">{content.problemTitle}</h2>
+    <div class="prose-dark">
+      {content.problemP.map((para) => <p>{para}</p>)}
+    </div>
+  </div>
+</section>
+
+<!-- COST -->
+<section class="chapter chapter--dark" id="cost">
+  <div class="wrap">
+    <p class="eyebrow eyebrow--dark"><i></i><span>{S.costEyebrow}</span></p>
+    <h2 class="h2 h2--dark">{content.costTitle}</h2>
+    <div class="cost-grid">
+      {content.costItems.map((item, i) => (
+        <div class="cost-cell">
+          <span class="cost-num">{String(i + 1).padStart(2, '0')}</span>
+          <h3>{item.title}</h3>
+          <p>{item.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ENGINE / SOLUTION -->
+<section class="chapter chapter--light" id="engine">
+  <div class="wrap">
+    <p class="eyebrow"><i></i><span>{S.engineEyebrow}</span></p>
+    <h2 class="h2">{S.engineTitle}</h2>
+    <p class="section-lede">{S.engineLede}</p>
+    <div class="deliver-grid">
+      {S.deliverables.map((d) => (
+        <div class="deliver-cell">
+          <span class="deliver-tick" aria-hidden="true">✓</span>
+          <div>
+            <h3>{d.t}</h3>
+            <p>{d.b}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="chapter chapter--light" id="pricing">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow"><i></i><span>{S.pricingEyebrow}</span></p>
+    <h2 class="h2">{S.pricingTitle}</h2>
+    <div class="price-row">
+      <div class="price-cell">
+        <span class="price-label">{S.setupLabel}</span>
+        <span class="price-num">¥8,400</span>
+      </div>
+      <div class="price-cell">
+        <span class="price-label">{S.monthlyLabel}</span>
+        <span class="price-num">¥6,000 – ¥22,000</span>
+      </div>
+    </div>
+    <p class="section-lede">{S.pricingNote}</p>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="chapter chapter--dark" id="guarantee">
+  <div class="wrap wrap--narrow" style="text-align:center">
+    <p class="eyebrow eyebrow--dark" style="justify-content:center"><i></i><span>{S.guaranteeEyebrow}</span></p>
+    <h2 class="h2 h2--dark">{S.guaranteeTitle}</h2>
+    <p class="section-lede" style="color:rgba(247,243,236,.7);margin-inline:auto">{S.guaranteeBody}</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="chapter chapter--light" id="faq">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow"><i></i><span>{S.faqEyebrow}</span></p>
+    <h2 class="h2">{S.faqTitle}</h2>
+    <div class="faq-list">
+      {content.faq.map((f) => (
+        <details class="faq-item">
+          <summary>{f.q}</summary>
+          <p>{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- FINAL / CAPTURE -->
+<section class="chapter chapter--dark final" id="final">
+  <div class="wrap final__inner">
+    <p class="eyebrow eyebrow--dark"><i></i><span>{S.finalEyebrow}</span></p>
+    <h2 class="h2 h2--dark">{S.finalTitle}</h2>
+    <p class="section-lede" style="color:rgba(247,243,236,.7)">{content.finalSub}</p>
+    <div class="final__ctas">
+      <form
+        class="capture"
+        action={SITE.mailerlite.actionUrl}
+        method="post"
+        novalidate
+        data-msg-success={S.success}
+        data-msg-invalid={S.invalid}
+      >
+        <div class="capture__row">
+          <input class="capture__input" type="email" name="fields[email]" placeholder={S.ctaEmail} autocomplete="email" aria-label="Email" aria-required="true" />
+          <button class="btn btn--primary capture__btn" type="submit"><span>{S.cta}</span></button>
+        </div>
+        <input type="hidden" name="ml-submit" value="1" />
+        <input type="hidden" name="anticsrf" value="true" />
+        <p class="capture__msg" role="alert" aria-live="polite"></p>
+      </form>
+      <div class="capture__done" hidden>
+        <p>{S.success}</p>
+      </div>
+      <div class="wechat">
+        <a class="wechat__qr" href="/assets/wechat-qr.jpg" target="_blank" rel="noopener" aria-label="WeChat QR">
+          <img src="/assets/wechat-qr.jpg" alt="WeChat QR — Tehsin" width="560" height="719" loading="lazy" />
+        </a>
+        <p class="wechat__txt">{S.wechat}</p>
+      </div>
+    </div>
+    <p class="final__micro">{S.micro}</p>
+  </div>
+</section>
+
+<style>
+  .prose-dark p { color: rgba(247, 243, 236, 0.72); font-size: 1.05rem; line-height: 1.8; margin-top: 1.1rem; }
+  .prose-dark strong { color: var(--cream); }
+  .section-lede { color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin-top: 1rem; max-width: 46rem; }
+
+  .cost-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+  .cost-cell { padding: 1.5rem; border-top: 1px solid var(--hairline-dark); }
+  .cost-num { font-family: var(--font-display); font-style: italic; color: var(--red-soft); font-size: 1.1rem; }
+  .cost-cell h3 { color: var(--cream); font-family: var(--font-display); font-size: 1.35rem; margin: 0.6rem 0 0.5rem; }
+  .cost-cell p { color: rgba(247, 243, 236, 0.6); line-height: 1.65; }
+
+  .deliver-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem 2.5rem; margin-top: 2.5rem; }
+  .deliver-cell { display: flex; gap: 0.9rem; padding: 1.1rem 0; border-top: 1px solid var(--hairline); }
+  .deliver-tick { display: grid; place-items: center; flex: none; width: 1.6rem; height: 1.6rem; border-radius: 50%; background: var(--red); color: #fff7f0; font-size: 0.85rem; }
+  .deliver-cell h3 { font-family: var(--font-display); font-size: 1.2rem; margin-bottom: 0.25rem; }
+  .deliver-cell p { color: var(--muted); line-height: 1.6; }
+
+  .price-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 2rem; }
+  .price-cell { padding: 1.75rem; border: 1px solid var(--hairline); border-radius: 1.25rem; background: var(--paper); }
+  .price-label { display: block; color: var(--muted); font-size: 0.85rem; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 0.4rem; }
+  .price-num { font-family: var(--font-display); font-size: 2rem; color: var(--ink); }
+
+  .faq-list { margin-top: 2rem; }
+  .faq-item { border-top: 1px solid var(--hairline); padding: 1.15rem 0; }
+  .faq-item summary { font-family: var(--font-display); font-size: 1.2rem; cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+  .faq-item summary::after { content: '+'; color: var(--red); font-size: 1.3rem; }
+  .faq-item[open] summary::after { content: '−'; }
+  .faq-item p { color: var(--muted); line-height: 1.7; margin-top: 0.75rem; }
+
+  @media (max-width: 760px) {
+    .cost-grid, .deliver-grid, .price-row { grid-template-columns: 1fr; }
+  }
+</style>

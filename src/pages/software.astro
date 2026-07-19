@@ -1,7 +1,12 @@
 ---
-import FunnelLayout from '../layouts/FunnelLayout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Funnel from '../components/Funnel.astro';
+import { verticals } from '../data/verticals';
 ---
 
-<FunnelLayout title="Software">
-  <h1>Software</h1>
-</FunnelLayout>
+<BaseLayout
+  title="LinkedIn Demand Gen for Supply-Chain & E-commerce SaaS — China Wins Global"
+  description="B2B buyers research tools on LinkedIn before booking a demo. We fill your demo calendar with qualified supply-chain and e-commerce buyers."
+>
+  <Funnel content={verticals.software.en} lang="en" />
+</BaseLayout>

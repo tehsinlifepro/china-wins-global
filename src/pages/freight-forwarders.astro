@@ -1,7 +1,12 @@
 ---
-import FunnelLayout from '../layouts/FunnelLayout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Funnel from '../components/Funnel.astro';
+import { verticals } from '../data/verticals';
 ---
 
-<FunnelLayout title="Freight Forwarders">
-  <h1>Freight Forwarders</h1>
-</FunnelLayout>
+<BaseLayout
+  title="LinkedIn Lead Generation for Freight Forwarders — China Wins Global"
+  description="Western importers vet forwarders on LinkedIn before they ask for a quote. We build the presence and pipeline that wins direct, high-margin shippers."
+>
+  <Funnel content={verticals.freight.en} lang="en" />
+</BaseLayout>

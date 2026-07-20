@@ -1,17 +1,13 @@
 ---
-import { freightOffer } from '../data/freightOffer';
+import type { OfferContent } from '../data/offers';
 import { magnets } from '../data/leadMagnets';
 import LeadMagnet from './LeadMagnet.astro';
 import AuditForm from './AuditForm.astro';
 
-interface Props { lang: 'en' | 'zh'; }
-const { lang } = Astro.props;
-const c = freightOffer[lang];
-
-const card = {
-  en: { label: 'Meanwhile, on LinkedIn…', n1: 'M. Rivera · DTC brand, US', m1: 'Need a dependable forwarder for 深圳→LA, 2×40HQ/mo. Loved your post on avoiding Q4 delays — can you quote?', n2: 'You · same day', m2: 'Absolutely — that’s our core lane. Rate + transit below, plus how we route around the Q4 backlog…', foot: 'Quote request · pipeline stage: warm' },
-  zh: { label: '与此同时，在领英上……', n1: 'M. Rivera · DTC 品牌，美国', m1: '需要一家可靠货代走 深圳→洛杉矶，每月 2×40HQ。很喜欢你那篇避开 Q4 拥堵的帖子——能报个价吗？', n2: '你 · 当天', m2: '当然——这正是我们的核心航线。报价与时效在下方，另附我们如何绕开 Q4 积压……', foot: '询价 · 管道阶段：温热' },
-}[lang];
+interface Props { content: OfferContent; lang: 'en' | 'zh'; }
+const { content: c, lang } = Astro.props;
+const card = c.card;
+const magnet = magnets[c.magnetId];
 ---
 
 <!-- HERO -->
@@ -34,7 +30,7 @@ const card = {
       <div class="fo-bezel">
         <div class="fo-bezel__core">
           <p class="booth-card__label">{card.label}</p>
-          <div class="msg"><span class="msg__avatar">MR</span><div><p class="msg__name">{card.n1}</p><p class="msg__text">{card.m1}</p></div></div>
+          <div class="msg"><span class="msg__avatar">{card.n1.slice(0,2)}</span><div><p class="msg__name">{card.n1}</p><p class="msg__text">{card.m1}</p></div></div>
           <div class="msg msg--you"><span class="msg__avatar msg__avatar--you">你</span><div><p class="msg__name">{card.n2}</p><p class="msg__text">{card.m2}</p></div></div>
           <p class="booth-card__foot"><span class="pulse" aria-hidden="true"></span><span>{card.foot}</span></p>
         </div>
@@ -71,7 +67,6 @@ const card = {
     <p class="eyebrow" style="justify-content:center;display:flex"><i></i><span>{c.offer.eyebrow}</span></p>
     <h2 class="h2" style="text-align:center">{c.offer.name}</h2>
     <p class="fo-tagline">{c.offer.tagline}</p>
-
     <div class="fo-island">
       <div class="fo-island__core">
         <p class="fo-stack__lead">{c.offer.sub}</p>
@@ -135,7 +130,7 @@ const card = {
 <section class="chapter chapter--light">
   <div class="wrap wrap--narrow">
     <p class="eyebrow"><i></i><span>{lang === 'zh' ? '免费资源' : 'Free resource · 免费资源'}</span></p>
-    <LeadMagnet magnet={magnets['02'][lang]} file={magnets['02'].file} lang={lang} featured />
+    <LeadMagnet magnet={magnet[lang]} file={magnet.file} lang={lang} featured />
   </div>
 </section>
 

@@ -1,13 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Funnel from '../components/Funnel.astro';
-import { verticals } from '../data/verticals';
-import { magnets } from '../data/leadMagnets';
+import OfferPage from '../components/OfferPage.astro';
+import { offers } from '../data/offers';
 ---
 
 <BaseLayout
-  title="LinkedIn Lead Generation for Factories & Manufacturers — China Wins Global"
-  description="Western brands vet manufacturers on LinkedIn before sending an RFQ. We make your factory findable and trusted — and win you direct buyers."
+  title="The Direct-Buyer Engine — LinkedIn Lead Generation for Factories & Manufacturers | China Wins Global"
+  description="Western brands vet manufacturers on LinkedIn before sending an RFQ — and find the trader, not your factory. The Direct-Buyer Engine wins you direct brand & importer clients in 90 days, done for you. 30 conversations guaranteed."
 >
-  <Funnel content={verticals.factories.en} lang="en" magnet={magnets['04'].en} magnetFile={magnets['04'].file} />
+  <OfferPage content={offers.factories.en} lang="en" />
 </BaseLayout>

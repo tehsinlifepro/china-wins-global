@@ -1,14 +1,13 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Funnel from '../../components/Funnel.astro';
-import { verticals } from '../../data/verticals';
-import { magnets } from '../../data/leadMagnets';
+import OfferPage from '../../components/OfferPage.astro';
+import { offers } from '../../data/offers';
 ---
 
 <BaseLayout
   lang="zh"
-  title="工厂与制造商的领英获客引擎 —— 中国赢全球"
-  description="西方品牌在发出询价前，先在领英考察工厂。我们让你的工厂被找到、被信任，赢得直接买家。"
+  title="直客工厂引擎 —— 工厂与制造商的领英获客系统 | 中国赢全球"
+  description="西方品牌在发出询价前先在领英考察工厂——找到的却是贸易商，不是你的工厂。「直客工厂引擎」在 90 天内为你赢得直客品牌与进口商，全程代运营。90 天 30 次对话，保证达成。"
 >
-  <Funnel content={verticals.factories.zh} lang="zh" magnet={magnets['04'].zh} magnetFile={magnets['04'].file} />
+  <OfferPage content={offers.factories.zh} lang="zh" />
 </BaseLayout>

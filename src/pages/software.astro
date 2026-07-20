@@ -1,13 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Funnel from '../components/Funnel.astro';
-import { verticals } from '../data/verticals';
-import { magnets } from '../data/leadMagnets';
+import OfferPage from '../components/OfferPage.astro';
+import { offers } from '../data/offers';
 ---
 
 <BaseLayout
-  title="LinkedIn Demand Gen for Supply-Chain & E-commerce SaaS — China Wins Global"
-  description="B2B buyers research tools on LinkedIn before booking a demo. We fill your demo calendar with qualified supply-chain and e-commerce buyers."
+  title="The Demo-Calendar Engine — LinkedIn Demand Gen for Supply-Chain & E-commerce SaaS | China Wins Global"
+  description="B2B buyers vet tools on LinkedIn before they book a demo. The Demo-Calendar Engine turns your founder's profile into a demo-booking machine — done for you. 30 qualified buyer conversations in 90 days, guaranteed."
 >
-  <Funnel content={verticals.software.en} lang="en" magnet={magnets['03'].en} magnetFile={magnets['03'].file} />
+  <OfferPage content={offers.software.en} lang="en" />
 </BaseLayout>

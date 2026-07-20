@@ -1,11 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import FreightOffer from '../components/FreightOffer.astro';
+import OfferPage from '../components/OfferPage.astro';
+import { offers } from '../data/offers';
 ---
 
 <BaseLayout
   title="The Direct-Shipper Engine — LinkedIn Lead Generation for Freight Forwarders | China Wins Global"
-  description="Western importers pick the forwarder they trust, not the cheapest line. The Direct-Shipper Engine builds you a pipeline of direct, repeat importer clients in 90 days — done for you. 30 qualified conversations guaranteed."
+  description="Western importers pick the forwarder they trust, not the cheapest line. The Direct-Shipper Engine builds a pipeline of direct, repeat importer clients in 90 days — done for you. 30 qualified conversations guaranteed."
 >
-  <FreightOffer lang="en" />
+  <OfferPage content={offers.freight.en} lang="en" />
 </BaseLayout>

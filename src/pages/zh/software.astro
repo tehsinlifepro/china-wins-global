@@ -1,14 +1,13 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Funnel from '../../components/Funnel.astro';
-import { verticals } from '../../data/verticals';
-import { magnets } from '../../data/leadMagnets';
+import OfferPage from '../../components/OfferPage.astro';
+import { offers } from '../../data/offers';
 ---
 
 <BaseLayout
   lang="zh"
-  title="供应链与电商软件的领英需求引擎 —— 中国赢全球"
-  description="B2B 买家在预约演示前，先在领英研究工具。我们用合格的供应链与电商买家，填满你的演示日程。"
+  title="Demo 日历引擎 —— 供应链与电商软件的领英需求系统 | 中国赢全球"
+  description="B2B 买家在预约演示前，先在领英研究工具。「Demo 日历引擎」把创始人的领英主页变成一台 Demo 预约机——全程代运营。90 天 30 次高质量买家对话，保证达成。"
 >
-  <Funnel content={verticals.software.zh} lang="zh" magnet={magnets['03'].zh} magnetFile={magnets['03'].file} />
+  <OfferPage content={offers.software.zh} lang="zh" />
 </BaseLayout>

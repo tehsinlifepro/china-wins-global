@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import FreightOffer from '../../components/FreightOffer.astro';
+import OfferPage from '../../components/OfferPage.astro';
+import { offers } from '../../data/offers';
 ---
 
 <BaseLayout
@@ -8,5 +9,5 @@ import FreightOffer from '../../components/FreightOffer.astro';
   title="直客货代引擎 —— 货运代理的领英获客系统 | 中国赢全球"
   description="西方进口商选的是他们信任的货代，而非最低价。「直客货代引擎」在 90 天内为你搭建一条直客、回头的进口商管道——全程代运营。90 天 30 次高质量对话，保证达成。"
 >
-  <FreightOffer lang="zh" />
+  <OfferPage content={offers.freight.zh} lang="zh" />
 </BaseLayout>

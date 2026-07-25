@@ -1,0 +1,48 @@
+---
+interface Props { lang: 'en' | 'zh'; dark?: boolean }
+const { lang, dark = false } = Astro.props;
+
+const brands = [
+  { name: 'easeamazon', url: 'https://easeamazon.com', en: 'Managed inventory planning for e-commerce brands', zh: '为电商品牌提供库存规划管理' },
+  { name: 'Sellerexa', url: 'https://sellerexa.com', en: 'Amazon PPC & growth for $100K+/mo founder-led brands', zh: '为月销 $10 万+ 创始人品牌提供亚马逊广告与增长' },
+];
+
+const S = {
+  en: { eyebrow: 'Trusted by · 合作伙伴', title: 'Working with operators who live e-commerce.', visit: 'Visit' },
+  zh: { eyebrow: '合作伙伴', title: '与真正深耕电商的团队并肩。', visit: '访问' },
+}[lang];
+---
+
+<section class={`chapter ${dark ? 'chapter--dark' : 'chapter--light'} trusted`}>
+  <div class="wrap">
+    <p class={`eyebrow ${dark ? 'eyebrow--dark' : ''}`}><i></i><span>{S.eyebrow}</span></p>
+    <h2 class={`h2 ${dark ? 'h2--dark' : ''}`}>{S.title}</h2>
+    <div class="trusted__grid">
+      {brands.map((b) => (
+        <a class="trusted__card" href={b.url} target="_blank" rel="noopener">
+          <span class="trusted__name">{b.name}</span>
+          <span class="trusted__tag">{b[lang]}</span>
+          <span class="trusted__visit">{S.visit} ↗</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .trusted__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 2.25rem; }
+  .trusted__card {
+    display: flex; flex-direction: column; gap: 0.4rem;
+    padding: 1.75rem; border-radius: 1.25rem;
+    border: 1px solid var(--hairline); background: var(--paper);
+    text-decoration: none; color: var(--ink);
+    transition: transform 0.4s var(--ease), border-color 0.4s var(--ease);
+  }
+  .trusted__card:hover { transform: translateY(-3px); border-color: var(--red-soft); }
+  .trusted__name { font-family: var(--font-display); font-size: 1.6rem; }
+  .trusted__tag { color: var(--muted); line-height: 1.5; }
+  .trusted__visit { color: var(--red); font-size: 0.85rem; letter-spacing: 0.04em; margin-top: 0.25rem; }
+  .chapter--dark .trusted__card { background: rgba(247,243,236,0.05); border-color: var(--hairline-dark); color: var(--cream); }
+  .chapter--dark .trusted__tag { color: rgba(247,243,236,0.6); }
+  @media (max-width: 640px) { .trusted__grid { grid-template-columns: 1fr; } }
+</style>

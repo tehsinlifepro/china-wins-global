@@ -6,6 +6,12 @@
       "sourceType": "github",
       "skillPath": "skills_all/alex-hormozi-pitch/SKILL.md",
       "computedHash": "8987034d93b2b929abcf45d4b6e1dd66e361e510b17aa6c212c52e2839465460"
+    },
+    "sales-funnel": {
+      "source": "vivy-yi/xiaohongshu-skills",
+      "sourceType": "github",
+      "skillPath": "skills/04-电商转化/sales-funnel/SKILL.md",
+      "computedHash": "e4baed06765a280b28d5fdb170625e11de494cf97e7fa3dc29bd1c0e25dae2bc"
     }
   }
 }

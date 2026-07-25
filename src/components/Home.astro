@@ -3,6 +3,7 @@ import { home } from '../data/home';
 import { magnets } from '../data/leadMagnets';
 import LeadMagnet from './LeadMagnet.astro';
 import AuditForm from './AuditForm.astro';
+import TrustedBy from './TrustedBy.astro';
 import '../styles/home.css';
 
 interface Props { lang: 'en' | 'zh'; }
@@ -93,6 +94,9 @@ const p = lang === 'zh' ? '/zh' : '';
       </div>
     </div>
   </section>
+
+  <!-- 3.5 · TRUSTED BY -->
+  <TrustedBy lang={lang} />
 
   <!-- 4 · THE ENGINE -->
   <section class="chapter chapter--light" id="engine">

@@ -3,6 +3,7 @@ import type { OfferContent } from '../data/offers';
 import { magnets } from '../data/leadMagnets';
 import LeadMagnet from './LeadMagnet.astro';
 import AuditForm from './AuditForm.astro';
+import TrustedBy from './TrustedBy.astro';
 
 interface Props { content: OfferContent; lang: 'en' | 'zh'; }
 const { content: c, lang } = Astro.props;
@@ -101,6 +102,9 @@ const magnet = magnets[c.magnetId];
     <p class="fo-lede-dark" style="margin-inline:auto">{c.guarantee.body}</p>
   </div>
 </section>
+
+<!-- TRUSTED BY -->
+<TrustedBy lang={lang} />
 
 <!-- SCARCITY -->
 <section class="chapter chapter--light">

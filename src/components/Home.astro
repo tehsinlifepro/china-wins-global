@@ -140,6 +140,9 @@ const p = lang === 'zh' ? '/zh' : '';
       <div class="resource-band" style="margin-top:1.75rem">
         <LeadMagnet magnet={magnets['05'][lang]} file={magnets['05'].file} lang={lang} featured />
       </div>
+      <div class="lm-grid">
+        {['07', '09', '01'].map((id) => <LeadMagnet magnet={magnets[id][lang]} file={magnets[id].file} lang={lang} />)}
+      </div>
     </div>
   </section>
 

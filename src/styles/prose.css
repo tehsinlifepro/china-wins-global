@@ -28,6 +28,11 @@
   font-style: italic;
 }
 
+/* lead-magnet grid (used on vertical/home pages) */
+.lm-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 1.25rem; }
+@media (max-width: 900px) { .lm-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .lm-grid { grid-template-columns: 1fr; } }
+
 .page-head { margin-bottom: 2.5rem; }
 .page-lead {
   font-size: 1.2rem;

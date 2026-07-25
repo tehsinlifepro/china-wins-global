@@ -14,9 +14,12 @@ import { magnets } from '../../data/leadMagnets';
   <Fragment set:html={html} />
   <TrustedBy lang="zh" />
   <section class="chapter chapter--light" id="freebie">
-    <div class="wrap wrap--narrow">
+    <div class="wrap">
       <p class="eyebrow"><i></i><span>免费资源</span></p>
       <LeadMagnet magnet={magnets['01'].zh} file={magnets['01'].file} lang="zh" featured />
+      <div class="lm-grid">
+        {['05', '07', '09'].map((id) => <LeadMagnet magnet={magnets[id].zh} file={magnets[id].file} lang="zh" />)}
+      </div>
     </div>
   </section>
 </BaseLayout>

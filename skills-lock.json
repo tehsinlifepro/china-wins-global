@@ -7,6 +7,12 @@
       "skillPath": "skills_all/alex-hormozi-pitch/SKILL.md",
       "computedHash": "8987034d93b2b929abcf45d4b6e1dd66e361e510b17aa6c212c52e2839465460"
     },
+    "content-production": {
+      "source": "borghei/claude-skills",
+      "sourceType": "github",
+      "skillPath": "marketing/content-production/SKILL.md",
+      "computedHash": "1009991b0f4aba6618eab483e03c318998828edb867db271067175845f349543"
+    },
     "sales-funnel": {
       "source": "vivy-yi/xiaohongshu-skills",
       "sourceType": "github",

@@ -1,8 +1,8 @@
 ---
 import { SITE } from '../config';
 
-interface Props { lang: 'en' | 'zh'; }
-const { lang } = Astro.props;
+interface Props { lang: 'en' | 'zh'; vertical?: string; }
+const { lang, vertical = 'general' } = Astro.props;
 
 const S = {
   en: {
@@ -40,6 +40,7 @@ const S = {
       </div>
       <input type="hidden" name="ml-submit" value="1" />
       <input type="hidden" name="anticsrf" value="true" />
+      <input type="hidden" name="fields[vertical]" value={vertical} />
       <p class="capture__msg" role="alert" aria-live="polite"></p>
     </form>
     <div class="capture__done" hidden><p>{S.success}</p></div>

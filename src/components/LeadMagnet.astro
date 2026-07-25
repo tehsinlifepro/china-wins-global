@@ -7,8 +7,9 @@ interface Props {
   file: string;
   lang: 'en' | 'zh';
   featured?: boolean;
+  vertical?: string;
 }
-const { magnet, file, lang, featured = false } = Astro.props;
+const { magnet, file, lang, featured = false, vertical = 'general' } = Astro.props;
 const url = downloadPath(file, lang);
 
 const S = {
@@ -37,6 +38,7 @@ const S = {
     </div>
     <input type="hidden" name="ml-submit" value="1" />
     <input type="hidden" name="anticsrf" value="true" />
+    <input type="hidden" name="fields[vertical]" value={vertical} />
     <p class="capture__msg" role="alert" aria-live="polite"></p>
   </form>
 

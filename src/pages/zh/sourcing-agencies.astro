@@ -16,9 +16,9 @@ import { magnets } from '../../data/leadMagnets';
   <section class="chapter chapter--light" id="freebie">
     <div class="wrap">
       <p class="eyebrow"><i></i><span>免费资源</span></p>
-      <LeadMagnet magnet={magnets['01'].zh} file={magnets['01'].file} lang="zh" featured />
+      <LeadMagnet magnet={magnets['01'].zh} file={magnets['01'].file} lang="zh" vertical="sourcing" featured />
       <div class="lm-grid">
-        {['05', '07', '09'].map((id) => <LeadMagnet magnet={magnets[id].zh} file={magnets[id].file} lang="zh" />)}
+        {['05', '07', '09'].map((id) => <LeadMagnet magnet={magnets[id].zh} file={magnets[id].file} lang="zh" vertical="sourcing" />)}
       </div>
     </div>
   </section>

@@ -5,8 +5,8 @@ import LeadMagnet from './LeadMagnet.astro';
 import AuditForm from './AuditForm.astro';
 import TrustedBy from './TrustedBy.astro';
 
-interface Props { content: OfferContent; lang: 'en' | 'zh'; }
-const { content: c, lang } = Astro.props;
+interface Props { content: OfferContent; lang: 'en' | 'zh'; vertical: string; }
+const { content: c, lang, vertical } = Astro.props;
 const card = c.card;
 const magnet = magnets[c.magnetId];
 ---
@@ -134,9 +134,9 @@ const magnet = magnets[c.magnetId];
 <section class="chapter chapter--light">
   <div class="wrap">
     <p class="eyebrow"><i></i><span>{lang === 'zh' ? '免费资源' : 'Free resources · 免费资源'}</span></p>
-    <LeadMagnet magnet={magnet[lang]} file={magnet.file} lang={lang} featured />
+    <LeadMagnet magnet={magnet[lang]} file={magnet.file} lang={lang} vertical={vertical} featured />
     <div class="lm-grid">
-      {['05', '07', '09'].map((id) => <LeadMagnet magnet={magnets[id][lang]} file={magnets[id].file} lang={lang} />)}
+      {['05', '07', '09'].map((id) => <LeadMagnet magnet={magnets[id][lang]} file={magnets[id].file} lang={lang} vertical={vertical} />)}
     </div>
   </div>
 </section>
@@ -147,7 +147,7 @@ const magnet = magnets[c.magnetId];
     <p class="eyebrow eyebrow--dark"><i></i><span>{c.final.eyebrow}</span></p>
     <h2 class="h2 h2--dark">{c.final.title}</h2>
     <p class="fo-lede-dark">{c.final.sub}</p>
-    <div style="margin-top:1.75rem"><AuditForm lang={lang} /></div>
+    <div style="margin-top:1.75rem"><AuditForm lang={lang} vertical={vertical} /></div>
   </div>
 </section>
 

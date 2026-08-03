@@ -1,8 +1,12 @@
-/* MailerLite capture handler — attaches to every <form class="capture">.
-   Submits via fetch (no-cors) to the form's MailerLite action, then shows
-   the sibling .capture__done success state. No page navigation. */
+/* CWG capture handler — attaches to every <form class="capture">.
+   Submits via fetch (no-cors) to the Brevo relay (Google Apps Script web app),
+   which upserts the contact to Brevo (list "CWG Leads") + a backup Sheet,
+   then shows the sibling .capture__done success state. No page navigation. */
 (function () {
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbxrkkgOgCbHaxtdW43uGLlCXd2oAdOY9ebMJeDh8iqW-lqvRaKR9g0D0GX2ttaxhFB4/exec';
   var EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+
+  function val(form, sel) { var el = form.querySelector(sel); return (el && el.value) || ''; }
 
   function attach(form) {
     form.addEventListener('submit', function (e) {
@@ -21,10 +25,16 @@
       form.classList.remove('is-invalid');
       if (btn) btn.disabled = true;
 
+      var d = form.dataset || {};
       var body = new URLSearchParams();
-      body.set('fields[email]', email);
-      body.set('ml-submit', '1');
-      body.set('anticsrf', 'true');
+      body.set('email', email);
+      body.set('magnet', d.magnet || '');
+      body.set('vertical', d.vertical || val(form, '[name="fields[vertical]"]') || '');
+      body.set('source', d.source || 'site');
+      body.set('lang', document.documentElement.lang || 'en');
+      if (d.keyword) body.set('keyword', d.keyword);
+      var hp = form.querySelector('[name="website"]');
+      body.set('website', (hp && hp.value) || ''); // honeypot — empty for humans, filled by bots
 
       var finish = function () {
         var done = form.parentElement && form.parentElement.querySelector('.capture__done');
@@ -33,9 +43,9 @@
         if (btn) btn.disabled = false;
       };
 
-      fetch(form.action, { method: 'POST', mode: 'no-cors', body: body })
+      fetch(ENDPOINT, { method: 'POST', mode: 'no-cors', body: body })
         .then(finish)
-        .catch(finish); // no-cors: response is opaque, treat as sent
+        .catch(finish); // no-cors: opaque response, treat as sent
     });
   }
 

@@ -49,6 +49,24 @@ export const magnets: Record<string, Magnet> = {
     en: { title: 'The 15-Point Pre-Reply Checklist', blurb: 'The 15 things a Western buyer subconsciously checks before replying to a Chinese supplier.' },
     zh: { title: '回复前 15 项自查清单', blurb: '西方买家在回复中国供应商之前，下意识会检查的 15 件事。' },
   },
+  '10': {
+    file: '10-un-bypassable-supplier-playbook.pdf',
+    tag: 'sourcing',
+    en: { title: 'The Un-Bypassable Supplier Playbook', blurb: '7 moves that make the Western buyer refuse to go around you to the factory.' },
+    zh: { title: '「工厂跳不掉你」实战手册', blurb: '让海外买家宁愿多付一层、也不绕过你直连工厂的 7 个动作。' },
+  },
+  '11': {
+    file: '11-targeted-50-method.pdf',
+    tag: 'sourcing',
+    en: { title: 'The Targeted-50 Method', blurb: 'Why 50 right LinkedIn connections beat 4,200 random ones — and exactly how to pick the 50.' },
+    zh: { title: '「精准50人」开发法', blurb: '为什么 50 个精准联系人，胜过 4,200 个乱加好友，以及如何锁定这 50 人。' },
+  },
+  '12': {
+    file: '12-trust-signals-price-haggle.pdf',
+    tag: 'all',
+    en: { title: 'The 5 Trust Signals That End the Price Haggle', blurb: 'Five things beyond price that move you from cheapest to safest choice.' },
+    zh: { title: '让客户不再只砍价的 5 个信任信号', blurb: '除了价格，给客户 5 样可以判断你的东西——从「最便宜」变成「最放心」。' },
+  },
 };
 
 export const downloadPath = (file: string, lang: 'en' | 'zh') =>

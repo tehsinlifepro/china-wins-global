@@ -6,10 +6,8 @@ export interface SiteConfig {
     email: string;
     wechat: string;
   };
-  mailerlite: {
-    accountId: string;
-    formId: string;
-    actionUrl: string;
+  capture: {
+    endpoint: string;
   };
   analytics: {
     provider: string;
@@ -25,10 +23,9 @@ export const SITE: SiteConfig = {
     email: '3932482662@qq.com',
     wechat: 'tehsin369',
   },
-  mailerlite: {
-    accountId: '2518242',
-    formId: '193374527848187512',
-    actionUrl: 'https://assets.mailerlite.com/jsonp/2518242/forms/193374527848187512/subscribe',
+  capture: {
+    // Brevo relay (Google Apps Script web app) — see China Visit/capture-relay/ENDPOINTS.md
+    endpoint: 'https://script.google.com/macros/s/AKfycbxrkkgOgCbHaxtdW43uGLlCXd2oAdOY9ebMJeDh8iqW-lqvRaKR9g0D0GX2ttaxhFB4/exec',
   },
   analytics: {
     provider: '',

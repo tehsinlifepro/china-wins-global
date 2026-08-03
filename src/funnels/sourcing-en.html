@@ -397,15 +397,14 @@
     <p class="final__sub" data-reveal="" data-i18n="final.sub">See what a Western buyer sees when they search your company today. We run a boutique operation, two clients per intake, so every client gets our full attention. We'll mystery-shop your company as a Western buyer and show you exactly what they see, what is costing you buyers, and how to fix it, whether you work with us or not.</p>
     <p class="gloss gloss--dark" lang="zh-CN" data-reveal="" data-i18n="final.gloss">每月只服务两家客户。8 月 1 日开放新名额。先拿免费诊断，看看西方卖家眼中的你。</p>
     <div class="final__ctas" data-reveal="">
-      <!-- MailerLite capture — action/method/name/hidden fields are binding, do not alter -->
-      <form class="capture" id="auditForm" action="https://assets.mailerlite.com/jsonp/2518242/forms/193374527848187512/subscribe" method="post" novalidate="">
+      <!-- Brevo capture relay (Apps Script) — submitted via /assets/js/capture.js -->
+      <form class="capture" id="auditForm" action="https://script.google.com/macros/s/AKfycbxrkkgOgCbHaxtdW43uGLlCXd2oAdOY9ebMJeDh8iqW-lqvRaKR9g0D0GX2ttaxhFB4/exec" method="post" novalidate="" data-vertical="sourcing" data-magnet="audit" data-source="funnel">
         <div class="capture__row">
           <input class="capture__input" type="email" name="fields[email]" placeholder="you@company.com" autocomplete="email" aria-label="Email" aria-required="true">
           <button class="btn btn--primary capture__btn" type="submit" data-cursor="seal"><span data-i18n="final.cta">Get My Free LinkedIn Audit</span></button>
         </div>
-        <input type="hidden" name="ml-submit" value="1">
-        <input type="hidden" name="anticsrf" value="true">
         <input type="hidden" name="fields[vertical]" value="sourcing">
+        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
         <p class="capture__msg" id="captureMsg" role="alert" aria-live="polite"></p>
       </form>
       <div class="capture__done" id="captureDone" hidden="">

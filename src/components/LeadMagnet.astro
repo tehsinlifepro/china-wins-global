@@ -25,10 +25,11 @@ const S = {
 
   <form
     class="capture magnet__form"
-    action={SITE.mailerlite.actionUrl}
+    action={SITE.capture.endpoint}
     method="post"
     novalidate
     data-download={url}
+    data-magnet={file}
     data-msg-success={S.success}
     data-msg-invalid={S.invalid}
   >
@@ -36,9 +37,8 @@ const S = {
       <input class="capture__input" type="email" name="fields[email]" placeholder={S.placeholder} autocomplete="email" aria-label="Email" aria-required="true" />
       <button class="btn btn--primary capture__btn" type="submit"><span>{S.cta}</span></button>
     </div>
-    <input type="hidden" name="ml-submit" value="1" />
-    <input type="hidden" name="anticsrf" value="true" />
     <input type="hidden" name="fields[vertical]" value={vertical} />
+    <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" />
     <p class="capture__msg" role="alert" aria-live="polite"></p>
   </form>
 
